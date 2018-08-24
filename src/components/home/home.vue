@@ -68,7 +68,8 @@
             @mouseenter="ul_infoWrap(index)"
             @mouseleave="ul_infoWrap_leave"
             :class="index===1?'row3-item2':''"
-            v-for="(Product,index) in goodProduct">
+            v-for="(Product,index) in goodProduct"
+            :key="index">
             <div class="row3-item_titleWrap">
               <div class="row3-item_titleWrap_title">{{Product.title}}</div>
               <p class="row3-item_titleWrap_subtitle">{{Product.EnglishTitle}}</p>
@@ -77,7 +78,7 @@
               <li class="cf" v-for="(item,child_index) in Product.item">
                 <div class="fl">
                   <div class="row3-item_ul_titleWrap">
-                    <span>{{child_index+1}}.</span>
+                    <span>{{child_index + 1}}.</span>
                     <span>{{item.title}}</span>
                   </div>
                   <div v-show="(isHover===index?true:false)" class="row3-item_ul_infoWrap">
@@ -146,6 +147,7 @@
   import {swiper, swiperSlide} from 'vue-awesome-swiper'
 
   const ISHIDE = 8
+  const IS_HOVER = 1
   export default {
     name: "home",
     data() {
@@ -157,7 +159,7 @@
         ],
         homeSliderData: [],
         goodProduct: [],
-        isHover: 8,
+        isHover: IS_HOVER,
         initIndex: 0,
         recentNews: [],
         partner: [],
