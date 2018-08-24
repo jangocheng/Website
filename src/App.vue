@@ -3,7 +3,7 @@
       <homeHeader></homeHeader>
       <homeNav></homeNav>
       <div class="content">
-        <transition name="fade">
+        <transition name="fade" appear >
           <keep-alive>
             <router-view></router-view>
           </keep-alive>
@@ -12,7 +12,6 @@
     <footers></footers>
   </div>
 
-  <div></div>
 </template>
 
 <script>
@@ -47,10 +46,6 @@
     font-family: "Microsoft YaHei", 'sans-serif', "Tahoma", "Helvetica";
   }
 
-  .content{
-    border:1px solid transparent;
-  }
-
   .fade-enter-active, .fade-leave-active {
     transition: opacity .2s;
   }
@@ -61,6 +56,7 @@
 
   .content {
     position: relative;
+    border:1px solid transparent;
   }
 
 </style>

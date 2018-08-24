@@ -1,19 +1,19 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/components/home/home'
-import NewsCenter from '@/components/news-center/news-center'
-import NewsCenterDetails from '@/components/news-center-details/news-center-details'
-import Recruitment from '@/components/recruitment/recruitment'
-import RecruitmentDetails from '@/components/recruitment-details/recruitment-details'
-import Introduce from '@/components/introduce/introduce'
-import ManagementTeam from '@/components/management-team/management-team'
-import DevelopmentCatalogue from '@/components/development-catalogue/development-catalogue'
-import QualificationHonor from '@/components/qualification-Honor/qualification-Honor'
-import ContactUs from '@/components/contact-us/contact-us'
-import SuccessCase from '@/components/success-case/success-case'
-import Product from '@/components/product/product'
-import ProductDetails from '@/components/product-details/product-details'
-import Culture from '@/components/Culture/Culture'
+const Home = () => import ('@/components/home/home')
+const NewsCenter = () => import ('@/components/news-center/news-center')
+const NewsCenterDetails = () => import ('@/components/news-center-details/news-center-details')
+const Recruitment = () => import ('@/components/recruitment/recruitment')
+const RecruitmentDetails = () => import ('@/components/recruitment-details/recruitment-details')
+const Introduce = () => import ('@/components/introduce/introduce')
+const ManagementTeam = () => import ('@/components/management-team/management-team')
+const DevelopmentCatalogue = () => import ('@/components/development-catalogue/development-catalogue')
+const QualificationHonor = () => import ('@/components/qualification-Honor/qualification-Honor')
+const ContactUs = () => import ('@/components/contact-us/contact-us')
+const SuccessCase = () => import ('@/components/success-case/success-case')
+const Product = () => import ('@/components/product/product')
+const ProductDetails = () => import ('@/components/product-details/product-details')
+const Culture = () => import ('@/components/Culture/Culture')
 
 Vue.use(Router)
 
