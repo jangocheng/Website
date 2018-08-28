@@ -1,23 +1,7 @@
 <template>
   <div class="management-team">
     <barnner ref="banner" :bgImg="bgImg"></barnner>
-    <div class="commonWidth" style="border:1px solid #f7f7f7;">
-      <h4 class="commonTitleWrap">
-        <strong>团队组合</strong>
-        <span>TEAM COMPOSITION</span>
-      </h4>
-      <div class="flex-container team-show">
-        <div class="flex-item" v-for="(item,index) in teamRatio" :key="index">
-          <div class="flex-item_info"
-               :class="index===0?'flex-item_b':index===1?'flex-item_s':index===2?'flex-item_ben':''">
-            <div class="proportion">
-              <span>{{item.ratio}}</span><span>%</span>
-            </div>
-            <div class="position">{{item.name}}</div>
-          </div>
-        </div>
-
-      </div>
+    <div class="commonWidth" style="border:1px solid transparent;">
       <h4 class="commonTitleWrap">
         <strong>主要领导人</strong>
         <span>CHIEF LEADERS</span>
@@ -34,6 +18,22 @@
             </div>
           </div>
         </div>
+      </div>
+      <h4 class="commonTitleWrap">
+        <strong>团队组合</strong>
+        <span>TEAM COMPOSITION</span>
+      </h4>
+      <div class="flex-container team-show">
+        <div class="flex-item" v-for="(item,index) in teamRatio" :key="index">
+          <div class="flex-item_info"
+               :class="index===0?'flex-item_b':index===1?'flex-item_s':index===2?'flex-item_ben':''">
+            <div class="proportion">
+              <span>{{item.ratio}}</span><span>%</span>
+            </div>
+            <div class="position">{{item.name}}</div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -80,7 +80,6 @@
 <style scoped>
 
   .management-team {
-    background-color: #f7f7f7;
     font-size: 14px;
     font-family: "Microsoft YaHei", 'Georgia', Times, Times New Roman, serif;
   }

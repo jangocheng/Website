@@ -56,7 +56,7 @@
 
   .content {
     position: relative;
-    border:1px solid transparent;
+
   }
 
 </style>

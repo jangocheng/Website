@@ -75,7 +75,6 @@
 
   .qualification-Honor {
     height: 100%;
-    background-color: #f7f7f7;
     font-size: 14px;
     font-family: "Microsoft YaHei", 'Georgia', Times, Times New Roman, serif;
     overflow: hidden;

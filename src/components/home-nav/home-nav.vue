@@ -84,7 +84,7 @@
   .header-bottom .commonWidth ul li a.active {
     color: #24b8cf;
     border: 1px solid #24b8cf;
-    border-radius: 24px;
+    border-radius: 2px;
   }
 
   .header-bottom-subTab {

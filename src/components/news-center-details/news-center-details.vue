@@ -42,15 +42,12 @@
         <div class="fr right">
           <div>
             <div class="search-wrap">
-              <input type="search" placeholder="search">
-              <a class="icon-search" href="javascript:;">search</a>
+              <input type="search" placeholder="search" v-model="searchResult">
+              <a class="icon-search" @click="search" href="javascript:;"></a>
             </div>
             <h4 class="right_recommend">为您推荐</h4>
             <ul class="recommend-list">
-              <li>强公司企业文化建设，团队凝聚力强公司企业文化建设，团队凝聚力</li>
-              <li>强公司企业文化建设，团队凝聚力</li>
-              <li>强公司企业文化建设，团队凝聚力</li>
-              <li>强公司企业文化建设，团队凝聚力</li>
+              <li v-for="item in Recommend" @click="recommendDetail(item.nid)">{{item.title}}</li>
             </ul>
           </div>
         </div>
@@ -60,20 +57,25 @@
 </template>
 
 <script>
-  import {initData} from 'api/news-center-details'
+  import {initData, getRecommend} from 'api/news-center-details'
 
   export default {
     name: "news-center-details",
     data() {
       return {
-        newsInfo: {}
+        newsInfo: {},
+        Recommend: [],
+        searchResult:''
       }
+    },
+    created() {
+      this._initData()
+      this._getRecommend()
     },
     mounted() {
       setTimeout(() => {
         this._initView()
-        this._initData()
-      }, 200)
+      }, 20)
     },
     methods: {
       _initData() {
@@ -88,25 +90,37 @@
       },
       _initView() {
         let newsCenterDetails = this.$refs.newsCenterDetails
-        let obox = newsCenterDetails.parentNode
-        let lis = obox.children
-        for (let i = 0; i < lis.length; i++) {
-          if (lis[i] !== newsCenterDetails) {
-            lis[i].style.display = "none"
-          } else {
-            lis[i].style.display = "block"
-          }
-        }
+        let prevEle = newsCenterDetails.previousElementSibling
+        prevEle.style.display = 'none'
+      },
+      _getRecommend() {
+        getRecommend()
+          .then(res => {
+            this.Recommend = res
+          })
+      },
+      recommendDetail(nid) {
+        this.$router.push({
+          path: `/newsCenter/${nid}`
+        })
+      },
+      search() {
+        console.log(this.searchResult)
+      }
+    },
+    watch: {
+      $route() {
+        this._initData()
+        this._initView()
       }
     }
   }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
   .news-center-details {
     overflow: hidden;
-    background-color: #f2f2f2;
   }
 
   .left {
@@ -180,7 +194,6 @@
 
   .content {
     margin-top: 20px;
-    height: 676px;
     overflow: auto;
     border-bottom: 1px solid #d0d2d5;
   }
@@ -188,7 +201,7 @@
   .describe {
     color: #666666;
     line-height: 24px;
-    margin-top: 36px;
+    margin: 36px 0;
     text-indent: 2em;
   }
 
@@ -245,7 +258,7 @@
     text-indent: 6px;
     border: 1px solid #d0d2d5;
     outline: none;
-    padding-right: 20px;
+    padding-right: 30px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -278,10 +291,18 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+    cursor: pointer;
   }
 
   .recommend-list li:last-child {
     border-bottom: none;
 
+  }
+  .icon-search{
+    display:inline-block;
+    width:30px;
+    height:28px;
+    background:url("./img/icon-search.png") no-repeat center center;
+    background-size:50% 50%;
   }
 </style>

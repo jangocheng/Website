@@ -45,7 +45,6 @@
 
   .introduce {
     height: 100%;
-    background-color: #f2f2f2;
   }
 
   .introduce-wrap {
@@ -55,7 +54,7 @@
 
   .content {
     background-color: #fff;
-    padding: 0 46px;
+    padding: 0 150px;
     border: 1px solid #fff;
     margin-bottom: 50px;
     -webkit-box-sizing: border-box;

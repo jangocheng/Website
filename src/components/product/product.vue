@@ -71,7 +71,7 @@
       setTimeout(() => {
 
       }, 20)
-      this._initView()
+      this._initView()//这样写是为了在详情页刷新页面的时候保证dom渲染比当前页面慢，就不会出现刷新上一级页面也会存在的问题
     },
     methods: {
       _getProduct() {
@@ -91,7 +91,7 @@
       }
     },
     watch: {
-      $route(to, from) {
+      $route() {
         this._initView()
       }
     },

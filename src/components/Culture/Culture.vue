@@ -16,7 +16,7 @@
           </div>
         </div>
         <div class="fl item">
-          <h2 class="title_Culture">企业格言</h2>
+          <h2 class="title_Culture">创业使命</h2>
           <img src="./../../assets/Culture/img-Culture.png" alt="">
           <div>
             <p>团结 自信 创造 发展</p>
@@ -24,7 +24,7 @@
           </div>
         </div>
         <div class="fl item">
-          <h2 class="title_Culture">企业格言</h2>
+          <h2 class="title_Culture">企业理想</h2>
           <img src="./../../assets/Culture/img-Culture.png" alt="">
           <div>
             <p>团结 自信 创造 发展</p>
@@ -32,7 +32,7 @@
           </div>
         </div>
         <div class="fl item">
-          <h2 class="title_Culture">企业格言</h2>
+          <h2 class="title_Culture">未来展望</h2>
           <img src="./../../assets/Culture/img-Culture.png" alt="">
           <div>
             <p>团结 自信 创造 发展</p>
@@ -101,7 +101,6 @@
   .Culture {
     font-family: Microsoft YaHei, Tahoma, Arial, sans-serif;
     padding-bottom: 74px;
-    background: #f2f2f2;
     overflow: hidden;
   }
 

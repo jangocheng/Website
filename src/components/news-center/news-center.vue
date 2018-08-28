@@ -75,8 +75,9 @@
     },
     mounted() {
       setTimeout(() => {
-        this.initView()
+
       }, 20)
+      this.initView()
     },
     methods: {
       _getListAll(param) {
@@ -102,9 +103,7 @@
         )
       },
       initView() {
-        let banners = this.$refs.banner.$el
         let wrap = this.$refs.wrap
-        banners.style.display = 'block'
         wrap.style.display = 'block'
       },
       currentChange(size) {
@@ -112,7 +111,7 @@
       }
     },
     watch: {
-      $route(to, from) {
+      $route() {
         this.initView()
       }
     },
@@ -135,8 +134,7 @@
   }
 
   .wrap {
-    margin-top: 24px;
-    background: #f2f2f2;
+
     border: 1px solid #f2f2f2;
   }
 
@@ -186,6 +184,7 @@
     border: 1px solid #dcdcdc;
     background-color: #fff;
     margin: 0 10px 27px 10px;
+    cursor:pointer;
   }
 
   .certificate-img {

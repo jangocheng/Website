@@ -66,7 +66,7 @@
           <div
             class="fl row3-item"
             @mouseenter="ul_infoWrap(index)"
-            @mouseleave="ul_infoWrap_leave"
+            @mouseleave="ul_infoWrap_leave(index)"
             :class="index===1?'row3-item2':''"
             v-for="(Product,index) in goodProduct"
             :key="index">
@@ -96,7 +96,7 @@
                   <button class="row3-item_details" @click="selectDetails">查看详情</button>
                 </div>
                 <div style="clear:both;"></div>
-                <div v-if="((child_index+1)===Product.item.length)" class="hide row3-item_ul_allWrap">
+                <div v-if="((child_index+1)===Product.item.length)" v-show="(isHover===index?true:false)" class=" row3-item_ul_allWrap">
                   <a @click="selectAll" class="row3-item_ul_all" href="javascript:;">查看全部</a>
                 </div>
               </li>
@@ -211,8 +211,8 @@
       ul_infoWrap(index) {
         this.isHover = index
       },
-      ul_infoWrap_leave() {
-        this.isHover = ISHIDE
+      ul_infoWrap_leave(index) {
+        this.isHover = index
       },
       _getRecentNews() {
         getRecentNews()
@@ -615,6 +615,7 @@
   }
 
   .row3-item_ul_allWrap {
+    display: block;
     text-align: center;
     margin-top: 21px;
   }
@@ -650,7 +651,7 @@
   }
 
   .row3-item:hover .row3-item_ul_allWrap {
-    display: block;
+    /*display: block;*/
   }
 
   .row4 .commonWidth {
@@ -660,8 +661,8 @@
 
   .row4 {
     /*height: 432px;*/
-    background-color: #f5f5f6;
-    border: 1px solid #f5f5f6;
+    /*background-color: #f5f5f6;*/
+    border: 1px solid #fff;
     padding-bottom: 16px;
   }
 
