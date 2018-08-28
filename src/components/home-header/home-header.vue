@@ -1,9 +1,9 @@
 <template>
   <div class="header-top">
     <div class="cf commonWidth">
-      <div class="fr header-top_phone">发010-82990836/35</div>
+      <div class="fr header-top_phone">010-82990836/35</div>
       <div class="fr header-top_weixin" @mouseenter="isCode_enter" @mouseleave="enter_leave">
-        关注微信1
+        关注微信
         <span class="header-top_weixin_down" ref="headerTopWeixinDown"></span>
         <transition name="myCode">
           <div class="weixin_code" v-show="state" @mouseenter="state=false">
