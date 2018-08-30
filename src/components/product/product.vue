@@ -116,7 +116,7 @@
     box-shadow: 0 0 10px #e8e8e8;
     border: 1px solid #e8e8e8;
     border-radius: 5px;
-    padding: 10px;
+    padding: 10px 30px;
     margin-top: 30px;
     margin-bottom: 30px;
     -webkit-box-sizing: border-box;
@@ -148,6 +148,7 @@
     height: 285px;
     border: 1px solid #c5d8db;
     text-align: center;
+    cursor:pointer;
   }
 
   .swiper-slide img {

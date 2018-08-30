@@ -1,7 +1,5 @@
-<template>
-  <div class="barnner" :style="{backgroundImage:'url('+bgImg+')'}">
-
-  </div>
+<template>  <!--:style="{backgroundImage:'url('+bgImg+')'}"-->
+  <div class="barnner" v-lazy:background-image="bgImg"></div>
 </template>
 
 <script>
@@ -9,17 +7,18 @@
     name: "barnner",
     props: {
       "bgImg": {
-        type: String,
-        required:false
+        type: String
       }
     }
   }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
   .barnner {
     height: 300px;
+    /*background-color:#0d3349;*/
     background-position: center center;
     background-repeat: no-repeat;
   }
+
 </style>

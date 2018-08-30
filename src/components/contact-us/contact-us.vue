@@ -2,7 +2,7 @@
   <div class="contact-us">
     <barnner ref="banner" :bgImg="bgImg"></barnner>
     <div class="commonWidth">
-      <div class="mapWrap" v-for="item in companyList">
+      <div class="mapWrap" v-for="(item,index) in companyList" :key="index">
         <div class="title">
           <label>{{item.name}}</label>
         </div>
@@ -34,7 +34,32 @@
               </div>
             </div>
           </div>
-          <div class="fr map"></div>
+          <div class="fr map">
+            <el-amap :vid="address[index].el"
+                     :zoom="address[index].zoom"
+                     :center="address[index].center"
+                     class="amap-demo"
+                     :plugin="address[index].plugin">
+              <el-amap-info-window :position="address[index].mywindow.position"
+                                   :content="address[index].mywindow.content"
+                                   :visible="address[index].mywindow.visible"
+                                   :events="address[index].mywindow.events">
+              </el-amap-info-window>
+              <el-amap-marker :position="address[index].marker.position"
+                              :events="address[index].marker.events"
+                              :visible="address[index].marker.visible"
+                              :draggable="address[index].marker.draggable">
+              </el-amap-marker>
+              <el-amap-circle :center="address[index].circle.center"
+                              :radius="address[index].circle.radius"
+                              :fillOpacity="address[index].circle.fillOpacity"
+                              :events="address[index].circle.events"
+                              :strokeColor="address[index].circle.strokeColor"
+                              :strokeStyle="address[index].circle.strokeStyle"
+                              :fillColor="address[index].circle.fillColor">
+              </el-amap-circle>
+            </el-amap>
+          </div>
         </div>
       </div>
     </div>
@@ -50,10 +75,98 @@
     data() {
       return {
         companyList: [],
-        bgImg: 'http://www.ncs-cyber.com.cn/CompanyWebsite/upload/banner/646b49ef-9cc9-48d3-8b81-76201b142563.jpg'
-
+        bgImg: 'http://www.ncs-cyber.com.cn/CompanyWebsite/upload/banner/646b49ef-9cc9-48d3-8b81-76201b142563.jpg',
+        address: [
+          {
+            el:'map1',
+            zoom: 15,
+            center: [116.431405, 39.979933],
+            circle: {
+              clickable: true,
+              center: [116.431405, 39.979933],
+              radius: 200,
+              fillOpacity: 0.3,
+              strokeStyle: 'dashed',
+              fillColor: '#FFFF00',
+              strokeColor: '#00BFFF'
+            },
+            marker: {
+              position: [116.431405, 39.979933],
+              events: {
+                dragend: (e) => {
+                  this.markers[0].position = [e.lnglat.lng, e.lnglat.lat]
+                }
+              },
+              visible: true,
+              draggable: false
+            },
+            mywindow: {
+              position: [116.431405, 39.979933],
+              content: '<h4>国瑞数码</h4>' +
+              '<div class="text item">北京市朝阳区芍药居综合楼3层4层</div>',
+              visible: true,
+              events: {
+                close() {
+                  this.visible = false
+                }
+              }
+            },
+            plugin: {
+              pName: 'Scale',
+              events: {
+                init(instance) {
+                  console.log(instance)
+                }
+              }
+            }
+          },
+          {
+            el:'map2',
+            zoom: 15,
+            center: [117.030488, 36.67327],
+            circle: {
+              clickable: true,
+              center: [117.030488, 36.67327],
+              radius: 200,
+              fillOpacity: 0.3,
+              strokeStyle: 'dashed',
+              fillColor: '#FFFF00',
+              strokeColor: '#00BFFF'
+            },
+            marker: {
+              position: [117.030488, 36.67327],
+              events: {
+                dragend: (e) => {
+                  this.markers[0].position = [e.lnglat.lng, e.lnglat.lat]
+                }
+              },
+              visible: true,
+              draggable: false
+            },
+            mywindow: {
+              position: [117.030488, 36.67327],
+              content: '<h4>国瑞数码</h4>' +
+              '<div class="text item">济南市历下区大明湖路96号</div>',
+              visible: true,
+              events: {
+                close() {
+                  this.visible = false
+                }
+              }
+            },
+            plugin: {
+              pName: 'Scale',
+              events: {
+                init(instance) {
+                  console.log(instance)
+                }
+              }
+            }
+          }
+        ]
       }
     },
+    computed: {},
     created() {
       this._companyList()
     },

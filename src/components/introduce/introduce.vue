@@ -41,15 +41,18 @@
   }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
   .introduce {
     height: 100%;
+
   }
 
   .introduce-wrap {
     margin-top: 23px;
-    border:1px solid transparent;
+    margin-bottom: 23px;
+    /*border:1px solid transparent;*/
+    box-shadow: 0 0 6px #ccc;
   }
 
   .content {

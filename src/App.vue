@@ -22,9 +22,6 @@
 
   export default {
     name: 'App',
-    methods: {
-
-    },
     created() {
       this.bottomCode = require('common/img/icon-erweima.png')
     },

@@ -42,8 +42,8 @@
         <div class="fr right">
           <div>
             <div class="search-wrap">
-              <input type="search" placeholder="search" v-model="searchResult">
-              <a class="icon-search" @click="search" href="javascript:;"></a>
+              <input type="search" placeholder="搜素" v-model="searchResult" @keyup.enter="search">
+              <a class="icon-search" @click="search" :plain="true" href="javascript:;"></a>
             </div>
             <h4 class="right_recommend">为您推荐</h4>
             <ul class="recommend-list">
@@ -57,7 +57,7 @@
 </template>
 
 <script>
-  import {initData, getRecommend} from 'api/news-center-details'
+  import {initData, getRecommend, searched} from 'api/news-center-details'
 
   export default {
     name: "news-center-details",
@@ -65,7 +65,7 @@
       return {
         newsInfo: {},
         Recommend: [],
-        searchResult:''
+        searchResult: ''
       }
     },
     created() {
@@ -96,7 +96,12 @@
       _getRecommend() {
         getRecommend()
           .then(res => {
-            this.Recommend = res
+//            测试:截取前三条
+            let arr = []
+            for (let i = 0; i < 2; i++) {
+              arr.push(res[i])
+            }
+            this.Recommend = arr
           })
       },
       recommendDetail(nid) {
@@ -104,8 +109,26 @@
           path: `/newsCenter/${nid}`
         })
       },
+      message(content) {
+        this.$message({
+          showClose: true,
+          message: content,
+          type: 'error'
+        })
+      },
       search() {
-        console.log(this.searchResult)
+        if (this.searchResult === '') {
+          this.message('搜素内容不能为空！！！')
+          return
+        }
+        searched(this.searchResult)
+          .then(res => {
+            if (res.length < 1){
+              this.message('没有匹配结果')
+              return
+            }
+            this.Recommend = res
+          })
       }
     },
     watch: {
@@ -113,6 +136,9 @@
         this._initData()
         this._initView()
       }
+    },
+    components:{
+
     }
   }
 </script>
@@ -298,11 +324,12 @@
     border-bottom: none;
 
   }
-  .icon-search{
-    display:inline-block;
-    width:30px;
-    height:28px;
-    background:url("./img/icon-search.png") no-repeat center center;
-    background-size:50% 50%;
+
+  .icon-search {
+    display: inline-block;
+    width: 30px;
+    height: 28px;
+    background: url("./img/icon-search.png") no-repeat center center;
+    background-size: 50% 50%;
   }
 </style>

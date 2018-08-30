@@ -11,6 +11,7 @@ export function getRecommend() {
   return ajax(type, url)
 }
 
-export function search() {
-  // const url =
+export function searched(param) {
+  const url = `/recommend?q=${param}`
+  return ajax(type, url)
 }

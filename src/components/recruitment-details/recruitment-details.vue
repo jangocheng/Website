@@ -4,7 +4,7 @@
       <div class="commonCategory">
         <h3>社会招聘 > {{title}}</h3>
       </div>
-      <div class="content">
+      <div v-show="!isImg" class="content">
         <h3 class="position">{{title}}</h3>
         <div class="share-wrap">
           <span class="share-to">分享到</span>
@@ -48,6 +48,9 @@
         </div>
 
       </div>
+      <div class="welfare" v-show="isImg">
+        <img src="http://www.ncs-cyber.com.cn/image/fl.jpg" alt="">
+      </div>
     </div>
   </div>
 </template>
@@ -55,11 +58,13 @@
 <script>
   import {getDetails} from 'api/recruitment-details'
 
+  const NUM = '666'
   export default {
     name: "recruitment-details",
     data() {
       return {
-        title: ''
+        title: '',
+        isImg:false
       }
     },
     created() {
@@ -83,6 +88,11 @@
       },
       _getDetails() {
         let params = this.$route.params
+        if(params.id === NUM){
+          this.isImg = true
+          this.title = '福利待遇'
+          return
+        }
         getDetails(params.id)
           .then(res => {
             this.title = res.text
@@ -105,6 +115,11 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+  }
+
+  .welfare{
+    text-align: center;
+    margin:30px 0;
   }
 
   .position {

@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
 const Home = () => import ('@/components/home/home')
 const NewsCenter = () => import ('@/components/news-center/news-center')
 const NewsCenterDetails = () => import ('@/components/news-center-details/news-center-details')
@@ -14,6 +15,7 @@ const SuccessCase = () => import ('@/components/success-case/success-case')
 const Product = () => import ('@/components/product/product')
 const ProductDetails = () => import ('@/components/product-details/product-details')
 const Culture = () => import ('@/components/Culture/Culture')
+const PageNotFound = () => import ('@/components/page-not-found/page-not-found')
 
 Vue.use(Router)
 
@@ -99,6 +101,10 @@ export default new Router({
     {
       path: '/culture',
       component: Culture
+    },
+    {
+      path: "*",
+      component: PageNotFound
     }
   ]
 })

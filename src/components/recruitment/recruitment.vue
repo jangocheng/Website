@@ -46,11 +46,11 @@
                   <div class="fl title">福利待遇</div>
                 </div>
                 <ul>
-                  <li v-for="item in Benefits">
+                  <li>
                         <span class="circle-wrap">
                             <i class=""></i>
                         </span>
-                    <span class="desc" @click="select(item.id)">{{item.text}}</span>
+                    <span class="desc" @click="select(666)">福利待遇</span>
                   </li>
 
                 </ul>
@@ -67,7 +67,7 @@
 </template>
 
 <script>
-  import {getCampusRecruitment,getSocietyRecruitment,getBenefits} from 'api/recruitment'
+  import {getCampusRecruitment,getSocietyRecruitment,getBenefits,getImgUrl} from 'api/recruitment'
   import Barnner from 'base/barnner/barnner'
 
 
@@ -79,7 +79,6 @@
         societyRecruitment: [],
         Benefits: [],
         bgImg: 'http://www.ncs-cyber.com.cn/CompanyWebsite/upload/banner/646b49ef-9cc9-48d3-8b81-76201b142563.jpg'
-
       }
     },
     created() {
@@ -131,7 +130,7 @@
   }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
   .fade-enter-active, .fade-leave-active {
     transition: opacity .2s;
@@ -228,6 +227,9 @@
     margin-left: 21px;
     color: #555555;
     cursor: pointer;
+    &:hover{
+      color:#0b3e6f;
+    }
   }
 
   .box ul {
