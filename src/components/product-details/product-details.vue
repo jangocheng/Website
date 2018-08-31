@@ -1,9 +1,9 @@
 <template>
   <div class="product-details" ref="productDetails">
     <div class="commonWidth">
-      <div class="nav">产品信息 -> 企业侧IDC/ISP信息安全管理系统</div>
+      <div class="nav">产品信息 -> {{currentProduct.name}}</div>
       <div class="container">
-        <h3>企业侧IDC/ISP信息安全管理系统</h3>
+        <h3>{{currentProduct.name}}</h3>
         <div class="container-child">
           <div class="item_label">一、产品概述</div>
           <p>
@@ -44,8 +44,23 @@
 </template>
 
 <script>
+  import {mapGetters} from 'vuex'
+
   export default {
     name: "product-details",
+    data() {
+      return {
+        currentProduct: {}
+      }
+    },
+    computed: {
+      ...mapGetters([
+        'product'
+      ])
+    },
+    created() {
+      this._setCurrentProduct()
+    },
     mounted() {
       setTimeout(() => {
         this._initView()
@@ -56,6 +71,15 @@
         let productDetails = this.$refs.productDetails
         let prevEle = productDetails.previousElementSibling
         prevEle.style.display = 'none'
+      },
+      _setCurrentProduct() {
+        this.currentProduct = this.getCurrentProduct()
+      },
+      getCurrentProduct() {
+        if (this.product.name) {
+          return this.product
+        }
+        return JSON.parse(localStorage.getItem('product'))
       }
     }
   }

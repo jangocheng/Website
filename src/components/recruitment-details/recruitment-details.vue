@@ -56,7 +56,7 @@
 </template>
 
 <script>
-  import {getDetails} from 'api/recruitment-details'
+  import {mapGetters} from 'vuex'
 
   const NUM = '666'
   export default {
@@ -64,8 +64,13 @@
     data() {
       return {
         title: '',
-        isImg:false
+        isImg: false
       }
+    },
+    computed: {
+      ...mapGetters([
+        'recruitment'
+      ])
     },
     created() {
       this.imgs = {
@@ -88,15 +93,18 @@
       },
       _getDetails() {
         let params = this.$route.params
-        if(params.id === NUM){
+        if (params.id === NUM) {
           this.isImg = true
           this.title = '福利待遇'
           return
         }
-        getDetails(params.id)
-          .then(res => {
-            this.title = res.text
-          })
+        this.title = this.getCurrentRecruitment().text
+      },
+      getCurrentRecruitment() {
+        if (this.recruitment.id) {
+          return this.recruitment
+        }
+        return JSON.parse(localStorage.getItem('recruitment'))
       }
     }
   }
@@ -117,9 +125,9 @@
     box-sizing: border-box;
   }
 
-  .welfare{
+  .welfare {
     text-align: center;
-    margin:30px 0;
+    margin: 30px 0;
   }
 
   .position {

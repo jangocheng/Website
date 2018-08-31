@@ -16,7 +16,7 @@
           <div class="fr total-number">共<span>105</span>篇</div>
         </div>
         <div class="flex-container">
-          <div class="flex-item" v-for="item in list" @click="newItem(item.userId)">
+          <div class="flex-item" v-for="item in list" @click="newItem(item)">
             <div class="certificate-img">
               <div class="top">
                 <img height="154" :src="item.news01" alt="">
@@ -52,6 +52,7 @@
 <script>
   import {getListAll} from 'api/news-center'
   import Barnner from 'base/barnner/barnner'
+  import {mapMutations} from 'vuex'
 
 
   export default {
@@ -80,6 +81,9 @@
       this.initView()
     },
     methods: {
+      ...mapMutations({
+        setNews:'SET_NEWS'
+      }),
       _getListAll(param) {
         getListAll(param)
           .then(res => {
@@ -97,10 +101,12 @@
         }
         this._getListAll(param)//导航切换调用created （this._getListAll()）  初始化数据
       },
-      newItem(id) {
+      newItem(item) {
         this.$router.push(
-          {path: `/newsCenter/${id}`}
+          {path: `/newsCenter/${item.userId}`}
         )
+        this.setNews(item)
+
       },
       initView() {
         let wrap = this.$refs.wrap
@@ -122,7 +128,7 @@
   }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
 
   .fade-enter-active, .fade-leave-active {

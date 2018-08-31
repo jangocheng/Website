@@ -4,6 +4,7 @@ import router from './router'
 import axios from 'axios'
 import VueAMap from 'vue-amap'
 import VueLazyload from 'vue-lazyload'
+import store from './store'
 import "babel-polyfill"
 import 'swiper/dist/css/swiper.css'
 import {Pagination, Carousel, CarouselItem, Message} from 'element-ui'
@@ -43,6 +44,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   components: {App},
   template: '<App/>'
 })

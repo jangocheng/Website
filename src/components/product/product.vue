@@ -7,7 +7,7 @@
           <span>互联网管理相关产品</span>
         </h3>
         <swiper :options="swiperOption">
-          <swiper-slide v-for="(item, index) in product" :key="index" @click.native="select">
+          <swiper-slide v-for="(item, index) in product" :key="index" @click.native="select(item)">
             <img :src="item.imgSrc" alt="">
             <p>{{item.name}}</p>
           </swiper-slide>
@@ -20,7 +20,7 @@
           <span>商用密码产品</span>
         </h3>
         <swiper :options="swiperOption">
-          <swiper-slide v-for="(item, index) in product" :key="index" @click.native="select">
+          <swiper-slide v-for="(item, index) in product" :key="index" @click.native="select(item)">
             <img :src="item.imgSrc" alt="">
             <p>{{item.name}}</p>
           </swiper-slide>
@@ -39,6 +39,7 @@
   import {getProduct} from 'api/product'
   import Barnner from 'base/barnner/barnner'
   import {swiper, swiperSlide} from 'vue-awesome-swiper'
+  import {mapMutations} from 'vuex'
 
 
   export default {
@@ -74,16 +75,20 @@
       this._initView()//这样写是为了在详情页刷新页面的时候保证dom渲染比当前页面慢，就不会出现刷新上一级页面也会存在的问题
     },
     methods: {
+      ...mapMutations({
+        set_product:'SET_PRODUCT'
+      }),
       _getProduct() {
         getProduct()
           .then(res => {
             this.product = res
           })
       },
-      select() {
+      select(item) {
         this.$router.push({
           path: `/product/2`
         })
+        this.set_product(item)
       },
       _initView() {
         let commonWidth = this.$refs.commonWidth

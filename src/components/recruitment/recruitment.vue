@@ -20,7 +20,7 @@
                         <span class="circle-wrap">
                             <i class=""></i>
                         </span>
-                    <span class="desc" @click="select(item.id)">{{item.text}}</span>
+                    <span class="desc" @click="select(item)">{{item.text}}</span>
                   </li>
                 </ul>
               </div>
@@ -35,7 +35,7 @@
                         <span class="circle-wrap">
                             <i class=""></i>
                         </span>
-                    <span class="desc" @click="select(item.id)">{{item.text}}</span>
+                    <span class="desc" @click="select(item)">{{item.text}}</span>
                   </li>
                 </ul>
               </div>
@@ -69,6 +69,7 @@
 <script>
   import {getCampusRecruitment,getSocietyRecruitment,getBenefits,getImgUrl} from 'api/recruitment'
   import Barnner from 'base/barnner/barnner'
+  import {mapMutations} from 'vuex'
 
 
   export default {
@@ -90,6 +91,9 @@
       this._initView()
     },
     methods: {
+      ...mapMutations({
+        set_recruitment:'SET_RECRUITMENT'
+      }),
       _getCampusRecruitment() {
         getCampusRecruitment()
           .then(res => {
@@ -109,10 +113,11 @@
             this.Benefits = res
           })
       },
-      select(id) {
+      select(item) {
         this.$router.push(
-          {path: `/recruitment/${id}`}
+          {path: `/recruitment/${item.id}`}
         )
+        this.set_recruitment(item)
       },
       _initView() {
         let commonWidth = this.$refs.commonWidth

@@ -8,8 +8,8 @@
               <h3>{{newsInfo.title}}</h3>
               <div class="cf">
                 <div class="fl time-wrap">
-                  <span>2017-06-19</span>
-                  <span>小王</span>
+                  <span>{{newsInfo.content_time}}</span>
+                  <span>{{newsInfo.name}}</span>
                 </div>
                 <div class="fr link-wrap">
                   <span>分享给朋友</span>
@@ -24,7 +24,7 @@
             <div class="content">
               <img height="432" src="./img/img-details01.png" alt="">
               <p class="describe">
-                {{newsInfo.body}}
+                {{newsInfo.content}}
               </p>
             </div>
           </section>
@@ -47,7 +47,7 @@
             </div>
             <h4 class="right_recommend">为您推荐</h4>
             <ul class="recommend-list">
-              <li v-for="item in Recommend" @click="recommendDetail(item.nid)">{{item.title}}</li>
+              <li v-for="item in Recommend" @click="recommendDetail(item)">{{item.title}}</li>
             </ul>
           </div>
         </div>
@@ -57,7 +57,9 @@
 </template>
 
 <script>
-  import {initData, getRecommend, searched} from 'api/news-center-details'
+  import {getRecommend, searched} from 'api/news-center-details'
+  import {mapMutations} from 'vuex'
+  import {mapGetters} from 'vuex'
 
   export default {
     name: "news-center-details",
@@ -67,6 +69,11 @@
         Recommend: [],
         searchResult: ''
       }
+    },
+    computed: {
+      ...mapGetters([
+        'news'
+      ]),
     },
     created() {
       this._initData()
@@ -78,15 +85,11 @@
       }, 20)
     },
     methods: {
+      ...mapMutations({
+        setNews: 'SET_NEWS'
+      }),
       _initData() {
-        let param = this.$route.params
-        if (!param.id) {
-          return
-        }
-        initData(param.id)
-          .then(res => {
-            this.newsInfo = res
-          })
+        this.newsInfo = this.EventListerWindowReload()
       },
       _initView() {
         let newsCenterDetails = this.$refs.newsCenterDetails
@@ -98,16 +101,15 @@
           .then(res => {
 //            测试:截取前三条
             let arr = []
-            for (let i = 0; i < 2; i++) {
+            for (let i = 0; i < 3; i++) {
               arr.push(res[i])
             }
             this.Recommend = arr
           })
       },
-      recommendDetail(nid) {
-        this.$router.push({
-          path: `/newsCenter/${nid}`
-        })
+      recommendDetail(item) {
+        this.setNews(item)
+        this._initData()
       },
       message(content) {
         this.$message({
@@ -123,23 +125,26 @@
         }
         searched(this.searchResult)
           .then(res => {
-            if (res.length < 1){
+            if (res.length < 1) {
               this.message('没有匹配结果')
               return
             }
             this.Recommend = res
           })
+      },
+      EventListerWindowReload() {//解决浏览器刷新getters取不到值的bug。
+        if (this.news.id) {
+          return this.news
+        }
+        return JSON.parse(localStorage.getItem('news'))
       }
     },
     watch: {
       $route() {
-        this._initData()
         this._initView()
       }
     },
-    components:{
-
-    }
+    components: {}
   }
 </script>
 
