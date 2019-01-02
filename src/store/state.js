@@ -1,6 +1,6 @@
 const state = {
   news:{},
-  newsRecord:[],//新闻浏览记录
+  newsRecordList:[],//新闻浏览记录列表
   product:{},
   recruitment:{}
 }
