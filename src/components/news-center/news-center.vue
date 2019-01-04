@@ -59,7 +59,7 @@
     name: "news-center",
     data() {
       return {
-        pageSize:5,
+        pageSize: 5,
         list: [],
         navs: ['全部', '特约文章', '喜讯', '测评动态'],
         navActive: '全部',
@@ -82,7 +82,7 @@
     },
     methods: {
       ...mapMutations({
-        setNews:'SET_NEWS'
+        setNews: 'SET_NEWS'
       }),
       _getListAll(param) {
         getListAll(param)
@@ -113,7 +113,6 @@
         wrap.style.display = 'block'
       },
       currentChange(size) {
-        console.log(size)
       }
     },
     watch: {
@@ -190,7 +189,7 @@
     border: 1px solid #dcdcdc;
     background-color: #fff;
     margin: 0 10px 27px 10px;
-    cursor:pointer;
+    cursor: pointer;
   }
 
   .certificate-img {
@@ -233,10 +232,9 @@
   }
 
   #paging {
-    margin:80px 0;
+    margin: 80px 0;
     text-align: center;
   }
-
 
   .view, .heart, .time {
     padding-left: 28px;

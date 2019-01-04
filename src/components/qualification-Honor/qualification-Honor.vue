@@ -31,7 +31,6 @@
   import {getCredentialList} from 'api/qualification-Honor'
   import Barnner from 'base/barnner/barnner'
 
-
   export default {
     name: "qualification--honor",
     data() {
@@ -49,11 +48,7 @@
     created() {
       this._getCredentialList()
     },
-    mounted() {
-      setTimeout(() => {
 
-      }, 20)
-    },
     methods: {
       _getCredentialList() {
         getCredentialList()
@@ -62,7 +57,7 @@
           })
       },
       currentChange(size) {
-        console.log(size)
+
       }
     },
     components: {

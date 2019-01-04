@@ -21,4 +21,9 @@ export function partner() {
   return ajax(type, url)
 }
 
+export function getImage() {
+  const url = `/photos`
+  return ajax(type,url)
+}
+
 

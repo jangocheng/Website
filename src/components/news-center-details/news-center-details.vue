@@ -58,8 +58,7 @@
 
 <script>
   import {getRecommend, searched} from 'api/news-center-details'
-  import {mapMutations} from 'vuex'
-  import {mapGetters} from 'vuex'
+  import {mapMutations, mapGetters} from 'vuex'
 
   export default {
     name: "news-center-details",
