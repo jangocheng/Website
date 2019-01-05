@@ -10,7 +10,7 @@
         <div class="cf row1-item-wrap">
           <div class="fl row1-item">
             <div class="row1-item_icon row1-item_iconGY"></div>
-            <h3>企业格言0</h3>
+            <h3>企业格言</h3>
             <p>团结 自信 创造 发展</p>
           </div>
           <div class="fl row1-item row1-itemCenter">
