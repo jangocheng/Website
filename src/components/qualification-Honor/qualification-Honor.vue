@@ -8,9 +8,9 @@
       <div class="flex-container">
         <div class="flex-item" v-for="item in getCredentialList">
           <div class="certificate-img">
-            <img src="./img/img-certificate01.png" alt="">
+            <img width="251" height="175" v-lazy="item.qualificationHonorImgPath" alt="">
           </div>
-          <p class="certificate-desc">{{item.name}}</p>
+          <p class="certificate-desc">{{item.qualificationHonorTitle}}</p>
         </div>
       </div>
       <!--分页-->
@@ -35,7 +35,7 @@
     name: "qualification--honor",
     data() {
       return {
-        pageSize:5,
+        pageSize: 12,
         getCredentialList: [],
         bgImg: 'http://www.ncs-cyber.com.cn/CompanyWebsite/upload/banner/646b49ef-9cc9-48d3-8b81-76201b142563.jpg',
       }
@@ -53,11 +53,16 @@
       _getCredentialList() {
         getCredentialList()
           .then(res => {
-            this.getCredentialList = res
+            if (res[0].success) {
+              const DATA = res[0].data
+              this.getCredentialList = DATA
+            }
+
           })
       },
       currentChange(size) {
-
+//        this.pageSize 每页多少条
+//        size 当前页
       }
     },
     components: {

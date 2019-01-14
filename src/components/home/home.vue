@@ -92,7 +92,12 @@
       _getSliderData() {
         api.getSliderData()
           .then(res => {
-            this.homeSliderData = res
+            console.log(res)
+            if(res[0].success) {
+              const DATA = res[0].data
+              this.homeSliderData = DATA
+            }
+//            this.homeSliderData = res
           })
       },
       _getGoodProduct() {

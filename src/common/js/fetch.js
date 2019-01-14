@@ -15,48 +15,31 @@ axios.interceptors.request.use((config) => {
 //返回状态判断(添加响应拦截器)
 axios.interceptors.response.use((res) => {
   //对响应数据做些事
-  return res;
+  return res.status === 200 ? res.data : res
 }, (error) => {
   return Promise.reject(error);
 })
 
 export function ajax(type, url, params) {
-  return new Promise((resolve, reject) => {
     if (type === "get") {
-      axios.get(url, params)
-        .then(response => {
-          resolve(response.data)
-        })
-        .catch((error) => {
-          reject(error)
-        })
+      return axios.get(url, params)
+
     } else if (type === "post") {
-      axios.post(url, params)
-        .then(response => {
-          resolve(response.data)
-        })
-        .catch((error) => {
-          reject(error)
-        })
+      return axios.post(url, params)
+
     } else if (type === "put") {
-      axios.put(url, params)
-        .then(response => {
-          resolve(response.data)
-        })
-        .catch((error) => {
-          reject(error)
-        })
+      return axios.put(url, params)
+
     } else if (type === "delete") {
-      axios.delete(url, params)
-        .then(response => {
-          resolve(response.data)
-        })
-        .catch((error) => {
-          reject(error)
-        })
+      return axios.delete(url, params)
+
     }
-  })
 }
+
+// axios 配置
+// axios.defaults.baseURL = 'http://localhost:3000'
+axios.defaults.baseURL = 'http://103.231.146.242:28732/cyber'
+axios.defaults.timeout = 5000;
 
 
 

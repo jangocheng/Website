@@ -6,37 +6,12 @@
         <h2 class="title">企业文化</h2>
         <h4 class="subtitle">未来，我们共同展望</h4>
       </div>
-      <div class="cf">
-        <div class="fl item">
-          <h2 class="title_Culture">企业格言</h2>
+      <div class="cf cultureTop">
+        <div class="fl item" v-for="item in culture">
+          <h2 class="title_Culture">{{item.cultureTitle}}</h2>
           <img src="./../../assets/Culture/img-Culture.png" alt="">
           <div>
-            <p>团结 自信 创造 发展</p>
-            <p>团结 自信 创造 发展</p>
-          </div>
-        </div>
-        <div class="fl item">
-          <h2 class="title_Culture">创业使命</h2>
-          <img src="./../../assets/Culture/img-Culture.png" alt="">
-          <div>
-            <p>团结 自信 创造 发展</p>
-            <p>团结 自信 创造 发展</p>
-          </div>
-        </div>
-        <div class="fl item">
-          <h2 class="title_Culture">企业理想</h2>
-          <img src="./../../assets/Culture/img-Culture.png" alt="">
-          <div>
-            <p>团结 自信 创造 发展</p>
-            <p>团结 自信 创造 发展</p>
-          </div>
-        </div>
-        <div class="fl item">
-          <h2 class="title_Culture">未来展望</h2>
-          <img src="./../../assets/Culture/img-Culture.png" alt="">
-          <div>
-            <p>团结 自信 创造 发展</p>
-            <p>团结 自信 创造 发展</p>
+            <p>{{item.cultureSubstance}}</p>
           </div>
         </div>
       </div>
@@ -48,44 +23,44 @@
       <el-carousel style="overflow: hidden;" height="300px" trigger="click" type="card">
         <el-carousel-item
           v-for="(item, index) in life" :key="index" :index="index">
-          <img width="100%" height="100%" :src="item" alt="">
+          <img width="100%" height="100%" :src="qizhui+item.imagePhotoPhoto" alt="">
         </el-carousel-item>
       </el-carousel>
-
     </div>
   </div>
 </template>
 
 <script>
-  import {getLife} from 'api/Culture'
+  import {getCulture} from 'api/Culture'
   import Barnner from 'base/barnner/barnner'
 
   export default {
     name: "culture",
     data() {
       return {
+        qizhui:'http://103.231.146.242:28732/cyber',
         slidesPerView: 5,
         spaceBetween: 40,
         slidesPerGroup: 5,
         leis: 'swiper-container9',
         life: [],
+        culture: [],
         bgImg: 'http://www.ncs-cyber.com.cn/CompanyWebsite/upload/banner/646b49ef-9cc9-48d3-8b81-76201b142563.jpg'
       }
     },
     created() {
-      this.imgs = []
-      this._getLife()
+      this._getCulture()
     },
-    mounted() {
-      setTimeout(() => {
 
-      }, 20)
-    },
     methods: {
-      _getLife() {
-        getLife()
+      _getCulture() {
+        getCulture()
           .then(res => {
-            this.life = res
+            if (res[0].success) {
+              const DATA = res[0].data
+              this.culture = DATA.culture
+              this.life = DATA.life
+            }
           })
       }
     },
@@ -97,6 +72,11 @@
 
 <style scoped lang="scss">
 
+  .cultureTop {
+    display: -webkit-flex;
+    display: flex;
+    justify-content: space-around;
+  }
 
   .Culture {
     font-family: Microsoft YaHei, Tahoma, Arial, sans-serif;
@@ -138,6 +118,8 @@
   }
 
   .item {
+    width: 272px;
+
     padding: 14px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -146,7 +128,6 @@
     -moz-box-shadow: 0 0 10px rgba(0, 0, 0, .1);
     box-shadow: 0 0 10px rgba(0, 0, 0, .1);
     border: 1px solid #e1e1e1;
-    margin-left: 23px;
     p {
       line-height: 26px;
       &:nth-child(1) {

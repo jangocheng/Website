@@ -1,7 +1,12 @@
 import {ajax} from 'common/js/fetch'
-import {type} from 'api/config'
 
-export function getLife() {
-  const url = '/life'
-  return ajax(type, url)
+
+let getCulture = () => {
+  const url = '/aboatJson/selectAboatBrowse.action'
+  return ajax('get', url,{
+    params:{
+      name:'corporateCulture'
+    }
+  })
 }
+export {getCulture}

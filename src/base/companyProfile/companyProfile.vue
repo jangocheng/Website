@@ -11,9 +11,9 @@
             <p>{{item.title}}</p>
           </div>
           <div class="bottom hide">
-            <p>{{item.describe1}}</p>
-            <p>{{item.describe2}}</p>
-            <p>{{item.describe3}}</p>
+            <p>{{item.instruction1}}</p>
+            <p>{{item.instruction2}}</p>
+            <p>{{item.instruction3}}</p>
             <!--<input type="button" value="查看详情">-->
           </div>
         </div>
@@ -25,9 +25,9 @@
 <script>
   export default {
     name: 'companyProfile',
-    props:{
-      homeSliderData:{
-        type:Array
+    props: {
+      homeSliderData: {
+        type: Array
       }
     }
   }

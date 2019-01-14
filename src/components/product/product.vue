@@ -2,27 +2,16 @@
   <div class="product">
     <barnner ref="banner" :bgImg="bgImg"></barnner>
     <div class="container commonWidth" ref="commonWidth">
-      <div class="row">
+      <div class="row" v-for="(items, index) in product" :key="index">
         <h3 class="title">
-          <span>互联网管理相关产品</span>
+          <span>{{items.title}}</span>
         </h3>
         <swiper :options="swiperOption">
-          <swiper-slide v-for="(item, index) in product" :key="index" @click.native="select(item)">
-            <img :src="item.imgSrc" alt="">
-            <p>{{item.name}}</p>
-          </swiper-slide>
-          <div class="swiper-button-next" slot="button-next"></div>
-          <div class="swiper-button-prev" slot="button-prev"></div>
-        </swiper>
-      </div>
-      <div id="tt" class="row">
-        <h3 class="title">
-          <span>商用密码产品</span>
-        </h3>
-        <swiper :options="swiperOption">
-          <swiper-slide v-for="(item, index) in product" :key="index" @click.native="select(item)">
-            <img :src="item.imgSrc" alt="">
-            <p>{{item.name}}</p>
+          <swiper-slide v-for="(childItem,index) in items.item"
+                        :key="index"
+                        @click.native="select(childItem)">
+            <img v-lazy="domain+childItem.productImageImagePath" alt="">
+            <p>{{childItem.productTitle}}</p>
           </swiper-slide>
           <div class="swiper-button-next" slot="button-next"></div>
           <div class="swiper-button-prev" slot="button-prev"></div>
@@ -39,13 +28,13 @@
   import {getProduct} from 'api/product'
   import Barnner from 'base/barnner/barnner'
   import {swiper, swiperSlide} from 'vue-awesome-swiper'
-  import {mapMutations} from 'vuex'
 
 
   export default {
     name: "product",
     data() {
       return {
+        domain: 'http://www.ncs-cyber.com.cn/CompanyWebsite/',
         product: [],
         slidesPerView: 3,
         spaceBetween: 50,
@@ -65,7 +54,7 @@
         }
       }
     },
-    created(){
+    created() {
       this._getProduct()
     },
     mounted() {
@@ -75,20 +64,25 @@
       this._initView()//这样写是为了在详情页刷新页面的时候保证dom渲染比当前页面慢，就不会出现刷新上一级页面也会存在的问题
     },
     methods: {
-      ...mapMutations({
-        set_product:'SET_PRODUCT'
-      }),
+
       _getProduct() {
         getProduct()
           .then(res => {
-            this.product = res
-          })
-      },
-      select(item) {
-        this.$router.push({
-          path: `/product/2`
+            if (res[0].success) {
+              const DATA = res[0].data
+              this.product = DATA
+            }
+          }).catch(err => {
+//          console.log(err)
         })
-        this.set_product(item)
+      },
+      select(childItem) {
+        this.$router.push({
+          path: `/product/productDetails`,
+          query: {
+            id: childItem.productId
+          }
+        })
       },
       _initView() {
         let commonWidth = this.$refs.commonWidth
@@ -153,10 +147,11 @@
     height: 285px;
     border: 1px solid #c5d8db;
     text-align: center;
-    cursor:pointer;
+    cursor: pointer;
   }
 
   .swiper-slide img {
+    width: 100%;
     height: 254px;
   }
 
@@ -175,9 +170,11 @@
     background-size: 16px;
     background-color: rgba(37, 41, 44, .2);
   }
-  .swiper-button-prev{
-    left:0;
+
+  .swiper-button-prev {
+    left: 0;
   }
+
   .swiper-button-next {
     right: 0;
   }

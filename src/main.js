@@ -17,7 +17,7 @@ Vue.prototype.$message = Message;
 Vue.use(VueAMap)
 Vue.use(VueLazyload, {
   error: require('common/img/fileError.jpg'),
-  loading: require('common/img/loading1.gif')
+  loading: require('common/img/loading_logo.png')
 })
 
 
@@ -31,9 +31,7 @@ VueAMap.initAMapApiLoader({
   v: '1.4.4'
 });
 
-// axios 配置
-axios.defaults.baseURL = 'http://localhost:3000'
-axios.defaults.timeout = 5000;
+
 
 
 Vue.config.productionTip = false

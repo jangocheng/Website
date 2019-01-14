@@ -7,14 +7,15 @@
         <span>CHIEF LEADERS</span>
       </h4>
       <div class="flex-container main-leadership">
-        <div class="flex-item" v-for="item in teamDetails">
-          <img class="head" src="./img/icon-head.png" alt="">
-          <h2>{{item.name}}</h2>
-          <p>{{item.position}}</p>
-          <div class="personal-info-wrap">
+        <div class="flex-item" v-for="(item,index) in teamDetails" :key="index">
+          <img class="head" v-lazy="item.headPath" alt="">
+          <h2>{{item.teamListName}}</h2>
+          <p>{{item.title}}</p>
+          <button @mouseenter="detailsInfo($event)" class="details">详情 >></button>
+          <div class="personal-info-wrap" ref="personalInfoWrap" @mouseleave="closeDetailsInfo">
             <div class="info">
-              <h3 class="personal-info_title">{{item.name}}</h3>
-              <div class="personal-info">{{item.personalInfo}}</div>
+              <h3 class="personal-info_title">{{item.teamListName}}</h3>
+              <div class="personal-info">{{item.content}}</div>
             </div>
           </div>
         </div>
@@ -28,9 +29,9 @@
           <div class="flex-item_info"
                :class="index===0?'flex-item_b':index===1?'flex-item_s':index===2?'flex-item_ben':''">
             <div class="proportion">
-              <span>{{item.ratio}}</span><span>%</span>
+              <span>{{item.Ratio}}</span><span>%</span>
             </div>
-            <div class="position">{{item.name}}</div>
+            <div class="position">{{item.educationName}}</div>
           </div>
         </div>
 
@@ -40,9 +41,8 @@
 </template>
 
 <script>
-  import {getTeamRatio,getTeamDetails} from 'api/management-team'
+  import * as api from 'api/management-team'
   import Barnner from 'base/barnner/barnner'
-
 
   export default {
     name: "management-team",
@@ -54,20 +54,27 @@
       }
     },
     created() {
-      this._getTeamRatio()
       this._getTeamDetails()
     },
     methods: {
-      _getTeamRatio() {
-        getTeamRatio()
-          .then(res => {
-            this.teamRatio = res
-          })
+      detailsInfo(ev) {
+        let el = ev.target.nextSibling.nextElementSibling
+        el.style.top = 0
+      },
+      closeDetailsInfo() {
+        let personalInfoWrap = this.$refs.personalInfoWrap
+        for (let item of personalInfoWrap.entries()) {
+          item[1].style.top = '100%'
+        }
       },
       _getTeamDetails() {
-        getTeamDetails()
+        api.getTeamDetails()
           .then(res => {
-            this.teamDetails = res
+            if (res[0].success) {
+              const DATA = res[0].data
+              this.teamRatio = DATA.team
+              this.teamDetails = DATA.main
+            }
           })
       }
     },
@@ -225,15 +232,15 @@
     -o-transition: 1s .1s;
     transition: 1s .1s;
     background-color: #e8e8e8;
+    overflow: auto;
   }
 
-  .main-leadership .flex-item:hover .personal-info-wrap {
+  .details:hover .personal-info-wrap {
     top: 0;
   }
 
   .personal-info-wrap .info {
     width: 100%;
-    height: 100%;
     background-color: #eff1f5;
     padding: 25px;
     text-align: left;
@@ -255,7 +262,7 @@
   }
 
   .main-leadership .head {
-    margin-top: 62px;
+    margin-top: 15px;
     width: 110px;
   }
 
@@ -274,16 +281,16 @@
   }
 
   .main-leadership button {
-    width: 140px;
-    height: 40px;
-    line-height: 40px;
+    width: 99px;
+    height: 30px;
+    line-height: 30px;
     text-align: center;
     color: #fff;
-    font-size: 18px;
+    font-size: 14px;
     border-radius: 35px;
-    background-color: #1fb4e5;
+    background-color: #90c2ed;
     border: none;
-    margin-top: 64px;
+    margin-top: 35px;
     cursor: pointer;
   }
 </style>

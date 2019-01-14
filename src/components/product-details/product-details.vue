@@ -1,65 +1,30 @@
 <template>
   <div class="product-details" ref="productDetails">
     <div class="commonWidth">
-      <div class="nav">产品信息 -> {{currentProduct.name}}</div>
+      <div class="nav">产品信息 -> {{productTitle}}</div>
       <div class="container">
-        <h3>{{currentProduct.name}}</h3>
-        <div class="container-child">
-          <div class="item_label">一、产品概述</div>
-          <p>
-            国瑞数码IDC/ISP信息安全管理系统(简称ISMS系统)是为IDC/ISP业务经营者建设的具有基础数据管理、访问日志管理、信息安全管理等功能的信息安全管理系统,以满足IDC/ISP业务经营者和电信管理部门的信息安全管理需求。</p>
-          <p>
-            国瑞数码IDC/ISP信息安全管理系统(简称ISMS系统)是为IDC/ISP业务经营者建设的具有基础数据管理、访问日志管理、信息安全管理等功能的信息安全管理系统,以满足IDC/ISP业务经营者和电信管理部门的信息安全管理需求。</p>
-          <p>
-            国瑞数码IDC/ISP信息安全管理系统(简称ISMS系统)是为IDC/ISP业务经营者建设的具有基础数据管理、访问日志管理、信息安全管理等功能的信息安全管理系统,以满足IDC/ISP业务经营者和电信管理部门的信息安全管理需求。</p>
-          <div class="item_label">二、产品架构</div>
-          <p>下图描述了ISMS系统网络拓扑关系及与备案管理系统之间关系:</p>
-          <div class="imgContainer">
-            <img src="http://www.ncs-cyber.com.cn/CompanyWebsite/upload/92f75453-fbba-4d45-b7f0-6ddf653dc3ed.png"
-                 alt="">
-          </div>
-          <div class="item_label">三、产品功能</div>
-          <p>该产品具有如下特点：</p>
-          <p>
-            １）数据采集：主要汇集全省ＩＤＣ／ＩＳＰ企业上报的基础数据，包括机房信息、ＩＰ地址、用户信息等，通过对本省企业机房架设数据采集设备收集本省互联网环境下的活跃资源信息，在ＳＭＭＳ系统中进行数据校准验证、去重垃圾数据和问题数据，优化本省采集的数据资源库。</p>
-          <p>
-            １）数据采集：主要汇集全省ＩＤＣ／ＩＳＰ企业上报的基础数据，包括机房信息、ＩＰ地址、用户信息等，通过对本省企业机房架设数据采集设备收集本省互联网环境下的活跃资源信息，在ＳＭＭＳ系统中进行数据校准验证、去重垃圾数据和问题数据，优化本省采集的数据资源库。</p>
-          <p>
-            １）数据采集：主要汇集全省ＩＤＣ／ＩＳＰ企业上报的基础数据，包括机房信息、ＩＰ地址、用户信息等，通过对本省企业机房架设数据采集设备收集本省互联网环境下的活跃资源信息，在ＳＭＭＳ系统中进行数据校准验证、去重垃圾数据和问题数据，优化本省采集的数据资源库。</p>
-          <p>
-            １）数据采集：主要汇集全省ＩＤＣ／ＩＳＰ企业上报的基础数据，包括机房信息、ＩＰ地址、用户信息等，通过对本省企业机房架设数据采集设备收集本省互联网环境下的活跃资源信息，在ＳＭＭＳ系统中进行数据校准验证、去重垃圾数据和问题数据，优化本省采集的数据资源库。</p>
-          <p>
-            １）数据采集：主要汇集全省ＩＤＣ／ＩＳＰ企业上报的基础数据，包括机房信息、ＩＰ地址、用户信息等，通过对本省企业机房架设数据采集设备收集本省互联网环境下的活跃资源信息，在ＳＭＭＳ系统中进行数据校准验证、去重垃圾数据和问题数据，优化本省采集的数据资源库。</p>
-          <div class="item_label">四、产品特点</div>
-          <p>
-            １）技术先进、扩展性好：基于我司多年在互联网管理方面的产品和项目经验进行设计，本项目的管理系统采用Ｊ２ＥＥ开发架构设计、流量采集和管控设备基于Ｌｉｎｕｘ内核实现，整个系统采用平台化模块化设计思路，产品总体技术先进，扩展性强；</p>
-          <p>
-            １）技术先进、扩展性好：基于我司多年在互联网管理方面的产品和项目经验进行设计，本项目的管理系统采用Ｊ２ＥＥ开发架构设计、流量采集和管控设备基于Ｌｉｎｕｘ内核实现，整个系统采用平台化模块化设计思路，产品总体技术先进，扩展性强；</p>
-          <p>
-            １）技术先进、扩展性好：基于我司多年在互联网管理方面的产品和项目经验进行设计，本项目的管理系统采用Ｊ２ＥＥ开发架构设计、流量采集和管控设备基于Ｌｉｎｕｘ内核实现，整个系统采用平台化模块化设计思路，产品总体技术先进，扩展性强；</p>
-        </div>
+        <h3>{{productTitle}}</h3>
+        <div class="container-child ps" v-html="contentHtml"></div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import {mapGetters} from 'vuex'
+  import * as api from 'api/product-details'
 
   export default {
     name: "product-details",
     data() {
       return {
-        currentProduct: {}
+        contentHtml:'',
+        productTitle:''
       }
     },
-    computed: {
-      ...mapGetters([
-        'product'
-      ])
-    },
+
+
     created() {
-      this._setCurrentProduct()
+      this._getProductDetail()
     },
     mounted() {
       setTimeout(() => {
@@ -67,20 +32,22 @@
       }, 20)
     },
     methods: {
+      _getProductDetail() {
+        let id = parseInt(this.$route.query.id)
+        api.getProductDetail(id)
+          .then(res => {
+            if (res[0].success) {
+              const DATA = res[0].data
+              this.contentHtml = DATA.productBody
+              this.productTitle = DATA.productTitle
+            }
+          })
+      },
       _initView() {
         let productDetails = this.$refs.productDetails
         let prevEle = productDetails.previousElementSibling
         prevEle.style.display = 'none'
       },
-      _setCurrentProduct() {
-        this.currentProduct = this.getCurrentProduct()
-      },
-      getCurrentProduct() {
-        if (this.product.name) {
-          return this.product
-        }
-        return JSON.parse(localStorage.getItem('product'))
-      }
     }
   }
 </script>
@@ -122,7 +89,7 @@
     line-height: 5em;
   }
 
-  p {
+  .ps {
     text-indent: 2em;
     line-height: 22px;
   }

@@ -93,7 +93,7 @@ export default new Router({
       component: Product,
       children: [
         {
-          path: ':id',
+          path: 'productDetails',
           component: ProductDetails
         }
       ]
