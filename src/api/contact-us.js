@@ -1,7 +1,8 @@
 import {ajax} from 'common/js/fetch'
-import {type} from 'api/config'
 
-export function companyList() {
-  const url = '/company-list'
-  return ajax(type, url)
+let companyList = () => {
+  const url = '/companyAddress/selectCompanyAddressList_JSON.action'
+  return ajax('get', url)
 }
+
+export {companyList}

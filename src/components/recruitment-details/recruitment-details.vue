@@ -2,46 +2,40 @@
   <div class="news-center-details" ref="newsCenterDetails">
     <div class="commonWidth">
       <div class="commonCategory">
-        <h3>社会招聘 > {{title}}</h3>
+        <h3>社会招聘 > {{recruitmentData.webWorkContentJob}}</h3>
       </div>
       <div v-show="!isImg" class="content">
-        <h3 class="position">{{title}}</h3>
+        <h3 class="position">{{recruitmentData.webWorkContentJob}}</h3>
         <div class="share-wrap">
           <span class="share-to">分享到</span>
-          <img :src="imgs.qq" alt="x">
-          <img :src="imgs.weibo" alt="x">
-          <img :src="imgs.weixin" alt="x">
+          <img v-lazy="imgs.qq" alt="x">
+          <img v-lazy="imgs.weibo" alt="x">
+          <img v-lazy="imgs.weixin" alt="x">
         </div>
         <div class="position-info">
           <table>
             <tr>
               <td class="left-text">工作地点：</td>
-              <td class="right-text">天津、北京、济南</td>
+              <td class="right-text">{{recruitmentData.webWorkContentAddress}}</td>
               <td class="left-text">工作经验：</td>
-              <td class="right-text">无</td>
+              <td class="right-text">{{recruitmentData.webWorkContentWorkExperience}}</td>
               <td class="left-text">学 历：</td>
-              <td class="right-text">本科及本科以上</td>
+              <td class="right-text">{{recruitmentData.webWorkContentRecrodSchool}}</td>
             </tr>
             <tr>
               <td class="left-text">工作类型：</td>
-              <td class="right-text">技术</td>
+              <td class="right-text">{{recruitmentData.work}}</td>
               <td class="left-text">招聘人数：</td>
-              <td class="right-text">2人</td>
+              <td class="right-text">{{recruitmentData.webWorkContentPeopleCount}}</td>
               <td class="left-text">发布时间：</td>
-              <td class="right-text">2017-12-18</td>
+              <td class="right-text">{{recruitmentData.releasetime}}</td>
             </tr>
           </table>
         </div>
         <h3 class="title">职位描述</h3>
-        <div class="position-desc">
-          <p>1、负责公司产品及项目的软件测试和质量检测，提升产品的技术可靠性；</p>
-          <p>2、研究、构建测试环境，使用成熟的测试工具，提升测试效率。</p>
-        </div>
+        <div class="position-desc" v-html="recruitmentData.webWorkContentDescribe"></div>
         <h3 class="title">任职要求</h3>
-        <div class="position-requirements">
-          <p>1、本科及以上学历，计算机、软件工程、通讯工程、密码学、数学等相关理工科专业；</p>
-          <p>2、至少精通JAVA、C++、Python其中一种开发语言；具有良好的逻辑思维能力、学习能力、动手能力、解决问题的能力。</p>
-        </div>
+        <div class="position-requirements" v-html="recruitmentData.webWorkContentCondition"></div>
         <div class="special-container">
           <h2>优先考虑：</h2>
           <p>熟悉网络知识、Linux环境、Hadoop生态圈，有海量数据挖掘、机器学习经验者。</p>
@@ -49,7 +43,7 @@
 
       </div>
       <div class="welfare" v-show="isImg">
-        <img src="http://www.ncs-cyber.com.cn/image/fl.jpg" alt="">
+        <img v-lazy="webWorkContentAddress" alt="">
       </div>
     </div>
   </div>
@@ -63,7 +57,8 @@
     name: "recruitment-details",
     data() {
       return {
-        title: '',
+        recruitmentData:'',
+        webWorkContentAddress:'',
         isImg: false
       }
     },
@@ -92,19 +87,15 @@
         prevEle.style.display = 'none'
       },
       _getDetails() {
-        let params = this.$route.params
-        if (params.id === NUM) {
-          this.isImg = true
-          this.title = '福利待遇'
-          return
-        }
-        this.title = this.getCurrentRecruitment().text
+        this.recruitmentData = this.getCurrentRecruitment()
       },
       getCurrentRecruitment() {
-        if (this.recruitment.id) {
-          return this.recruitment
+        if(!this.recruitment.webWorkContentRecrodSchool) {
+          this.isImg = true
+          this.webWorkContentAddress = this.recruitment.webWorkContentAddress
         }
-        return JSON.parse(localStorage.getItem('recruitment'))
+        let arr = Object.keys(this.recruitment)
+        return arr.length !==0 ? this.recruitment : JSON.parse(localStorage.getItem('recruitment'))
       }
     }
   }
@@ -187,9 +178,9 @@
     text-align: left;
   }
 
-  .position-desc p,
-  .position-requirements p,
-  .special-container p {
+  .position-desc,
+  .position-requirements,
+  .special-container {
     line-height: 26px;
     color: #666666;
   }

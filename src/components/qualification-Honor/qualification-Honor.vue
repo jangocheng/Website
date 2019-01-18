@@ -87,10 +87,14 @@
   .flex-container {
     display: -webkit-flex;
     display: flex;
-    -webkit-justify-content: space-between;
-    justify-content: space-between;
+    -webkit-justify-content: flex-start;
+    justify-content: flex-start;
     -webkit-flex-wrap: wrap;
     flex-wrap: wrap;
+  }
+  .flex-container:after{
+    content: '';
+    width: 280px;
   }
 
   .flex-item {
@@ -98,6 +102,7 @@
     height: 254px;
     border: 1px solid #dcdcdc;
     margin-bottom: 27px;
+    margin-left: 16px;
     background-color: #fff;
 
   }

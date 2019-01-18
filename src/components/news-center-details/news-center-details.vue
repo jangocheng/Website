@@ -22,16 +22,14 @@
           </header>
           <section>
             <div class="content">
-              <img height="432" src="./img/img-details01.png" alt="">
-              <p class="describe">
-                {{newsInfo.content}}
-              </p>
+              <p class="describe" v-html="newsInfo.content"></p>
             </div>
           </section>
           <div class="cf tools">
             <div class="fl prev">
               <div class="text-overflow">上一篇：苗圩部长赴青海考察ffffffffffffffffffff</div>
             </div>
+            <div class="fl praise" @click="praise">赞</div>
             <div class="fr next">
               <div class="text-overflow">下一篇：没有了</div>
             </div>
@@ -47,7 +45,7 @@
             </div>
             <h4 class="right_recommend">为您推荐</h4>
             <ul class="recommend-list">
-              <li v-for="item in Recommend" @click="recommendDetail(item)">{{item.title}}</li>
+              <li v-for="(item,index) in Recommend" :key="index" @click="recommendDetail(item)">{{item.title}}</li>
             </ul>
           </div>
         </div>
@@ -57,13 +55,14 @@
 </template>
 
 <script>
-  import {getRecommend, searched} from 'api/news-center-details'
+  import * as api from 'api/news-center-details'
   import {mapMutations, mapGetters} from 'vuex'
 
   export default {
     name: "news-center-details",
     data() {
       return {
+        qizhui: 'http://103.231.146.242:28732/cyber',
         newsInfo: {},
         Recommend: [],
         searchResult: ''
@@ -87,6 +86,10 @@
       ...mapMutations({
         setNews: 'SET_NEWS'
       }),
+      praise() {
+        api.postPraise(this.news.id)
+
+      },
       _initData() {
         this.newsInfo = this.EventListerWindowReload()
       },
@@ -96,15 +99,15 @@
         prevEle.style.display = 'none'
       },
       _getRecommend() {
-        getRecommend()
-          .then(res => {
-//            测试:截取前三条
-            let arr = []
-            for (let i = 0; i < 3; i++) {
-              arr.push(res[i])
-            }
-            this.Recommend = arr
-          })
+//        api.getRecommend()
+//          .then(res => {
+////            测试:截取前三条
+//            let arr = []
+//            for (let i = 0; i < 3; i++) {
+//              arr.push(res[i])
+//            }
+//            this.Recommend = arr
+//          })
       },
       recommendDetail(item) {
         this.setNews(item)
@@ -122,7 +125,7 @@
           this.message('搜素内容不能为空！！！')
           return
         }
-        searched(this.searchResult)
+        api.searched(this.searchResult)
           .then(res => {
             if (res.length < 1) {
               this.message('没有匹配结果')
@@ -142,12 +145,24 @@
       $route() {
         this._initView()
       }
-    },
-    components: {}
+    }
   }
 </script>
 
 <style scoped lang="scss">
+  .praise {
+    width:50px;
+    height:50px;
+    line-height:50px;
+    border-radius: 50%;
+    border:1px solid #ccc;
+    text-align: center;
+    margin-left:222px;
+    cursor:pointer;
+  }
+  .praise:hover{
+    border-color:red;
+  }
 
   .news-center-details {
     overflow: hidden;
@@ -155,7 +170,7 @@
 
   .left {
     width: 900px;
-    height: 864px;
+    /*height: 864px;*/
     background-color: #fff;
     padding: 0 24px;
     -webkit-box-sizing: border-box;

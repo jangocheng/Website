@@ -9,17 +9,17 @@
                 v-for="(item,index) in navs"
                 :index="index"
                 :key="index"
-                :class="{active:item===navActive}">
-              {{item}}
+                :class="{active:item.newsTypeTypename===navActive}">
+              {{item.newsTypeTypename}}
             </li>
           </ul>
-          <div class="fr total-number">共<span>105</span>篇</div>
+          <div class="fr total-number">共<span>{{totals}}</span>篇</div>
         </div>
         <div class="flex-container">
-          <div class="flex-item" v-for="item in list" @click="newItem(item)">
+          <div class="flex-item" v-for="(item,index) in list" :key="index" @click="newItem(item)">
             <div class="certificate-img">
               <div class="top">
-                <img height="154" :src="item.news01" alt="">
+                <img height="154" v-lazy="item.picturePath" alt="">
                 <h3>{{item.title}}</h3>
                 <i>{{item.source}}</i>
               </div>
@@ -35,8 +35,9 @@
         <div id="paging">
           <el-pagination
             @current-change="currentChange"
+            :current-page="paging.currentPage"
             background
-            :page-size="pageSize"
+            :page-size="paging.pageSize"
             layout="prev, pager, next"
             :total="total">
           </el-pagination>
@@ -50,7 +51,7 @@
 </template>
 
 <script>
-  import {getListAll} from 'api/news-center'
+  import * as api from 'api/news-center'
   import Barnner from 'base/barnner/barnner'
   import {mapMutations} from 'vuex'
 
@@ -59,20 +60,26 @@
     name: "news-center",
     data() {
       return {
-        pageSize: 5,
+        paging: {
+          newsType: '',
+          pageSize: 8,
+          currentPage: 1,
+        },
+        totals:0,
         list: [],
-        navs: ['全部', '特约文章', '喜讯', '测评动态'],
+        navs: [{"newsTypeTypename": '全部', id: ''}],
         navActive: '全部',
         bgImg: 'http://www.ncs-cyber.com.cn/CompanyWebsite/upload/banner/646b49ef-9cc9-48d3-8b81-76201b142563.jpg'
       }
     },
     computed: {
       total: function () {
-        return this.list.length
+        return this.totals
       }
     },
     created() {
       this._getListAll()
+      this._getNav()
     },
     mounted() {
       setTimeout(() => {
@@ -84,26 +91,39 @@
       ...mapMutations({
         setNews: 'SET_NEWS'
       }),
-      _getListAll(param) {
-        getListAll(param)
+      _getNav() {
+        api.getNav()
           .then(res => {
-            this.list = res
+            if (res[0].success === 'true') {
+              const DATA = res[0].data
+              for (let [index, item] of DATA.entries()) {
+                this.navs.push(item)
+              }
+            }
+          })
+      },
+      _getListAll() {
+        api.getListAll(this.paging)
+          .then(res => {
+            if (res[0].success === 'true') {
+              const DATA = res[0]
+              this.list = DATA.data
+              this.totals = DATA.page.totalRows
+            }
           })
           .catch(err => {
             // console.log(err)
           })
       },
       navTab(item, index) {
-        this.navActive = item
-        let param = {params: {"userId": index}}
-        if (index === 0) {
-          param = ''
-        }
-        this._getListAll(param)//导航切换调用created （this._getListAll()）  初始化数据
+        this.navActive = item.newsTypeTypename
+        this.paging.newsType = item.id
+        this.paging.currentPage = 1
+        this._getListAll(this.paging)//导航切换调用created （this._getListAll()）  初始化数据
       },
       newItem(item) {
         this.$router.push(
-          {path: `/newsCenter/${item.userId}`}
+          {path: `/newsCenter/newsDetails`}
         )
         this.setNews(item)
 
@@ -113,6 +133,8 @@
         wrap.style.display = 'block'
       },
       currentChange(size) {
+        this.paging.currentPage = size
+        this._getListAll()
       }
     },
     watch: {

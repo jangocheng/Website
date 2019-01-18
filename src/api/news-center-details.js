@@ -1,13 +1,20 @@
 import {ajax} from 'common/js/fetch'
-import {type} from 'api/config'
 
+let postPraise = (currentId) => {
+  const url ='/newsCenter/updateNewsCenter_JSONAddHeartById.action'
+  return ajax('post',url,{
+    id:currentId
+  })
+}
 
-export function getRecommend() {
+let getRecommend = () => {
   const url = `/news-center`
   return ajax(type, url)
 }
 
-export function searched(param) {
+let searched = (param) => {
   const url = `/news-center?q=${param}`
   return ajax(type, url)
 }
+
+export {postPraise,getRecommend,searched}

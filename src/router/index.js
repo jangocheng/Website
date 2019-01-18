@@ -49,7 +49,7 @@ export default new Router({
       component: NewsCenter,
       children: [
         {
-          path: ':id',
+          path: 'newsDetails',
           component: NewsCenterDetails,
         }
       ]
@@ -59,7 +59,7 @@ export default new Router({
       component: Recruitment,
       children: [
         {
-          path: ':id',
+          path: 'recruitmentDetails',
           component: RecruitmentDetails
         }
       ]

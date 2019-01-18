@@ -23,7 +23,7 @@
       <el-carousel style="overflow: hidden;" height="300px" trigger="click" type="card">
         <el-carousel-item
           v-for="(item, index) in life" :key="index" :index="index">
-          <img width="100%" height="100%" :src="qizhui+item.imagePhotoPhoto" alt="">
+          <img width="100%" height="100%" v-lazy="qizhui+item.imagePhotoPhoto" alt="">
         </el-carousel-item>
       </el-carousel>
     </div>
@@ -38,7 +38,7 @@
     name: "culture",
     data() {
       return {
-        qizhui:'http://103.231.146.242:28732/cyber',
+        qizhui: 'http://103.231.146.242:28732/cyber',
         slidesPerView: 5,
         spaceBetween: 40,
         slidesPerGroup: 5,

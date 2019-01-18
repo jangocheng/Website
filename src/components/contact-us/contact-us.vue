@@ -4,25 +4,25 @@
     <div class="commonWidth">
       <div class="mapWrap" v-for="(item,index) in companyList" :key="index">
         <div class="title">
-          <label>{{item.name}}</label>
+          <label>{{item.area}}</label>
         </div>
         <div class="cf wrap">
           <div class="fl left">
-            <div class="address">{{item.address}}</div>
+            <div class="address">{{item.companyAddressAddress}}</div>
             <div class="cf mB">
               <div class="fl icon icon-phone"></div>
               <div class="fl mL">
                 <div class="space">
                   <span class="name">总机：</span>
-                  <span>{{item.switchboard}}</span>
+                  <span>{{item.companyAddressSwitchboard}}</span>
                 </div>
                 <div class="space">
                   <span class="name">市场部：</span>
-                  <span>{{item.marketingPhone}}</span>
+                  <span>{{item.companyAddressMarketphone}}</span>
                 </div>
                 <div class="space">
                   <span class="name">技术支持：</span>
-                  <span>{{item.Support}}</span>
+                  <span>{{item.companyAddressSupportphone}}</span>
                 </div>
               </div>
             </div>
@@ -30,35 +30,12 @@
               <div class="fl icon icon-email"></div>
               <div class="fl mL space email">
                 <span class="name">Email</span>
-                <span>{{item.email}}</span>
+                <span>{{item.companyAddressEmail}}</span>
               </div>
             </div>
           </div>
           <div class="fr map">
-            <el-amap :vid="address[index].el"
-                     :zoom="address[index].zoom"
-                     :center="address[index].center"
-                     class="amap-demo"
-                     :plugin="address[index].plugin">
-              <el-amap-info-window :position="address[index].mywindow.position"
-                                   :content="address[index].mywindow.content"
-                                   :visible="address[index].mywindow.visible"
-                                   :events="address[index].mywindow.events">
-              </el-amap-info-window>
-              <el-amap-marker :position="address[index].marker.position"
-                              :events="address[index].marker.events"
-                              :visible="address[index].marker.visible"
-                              :draggable="address[index].marker.draggable">
-              </el-amap-marker>
-              <el-amap-circle :center="address[index].circle.center"
-                              :radius="address[index].circle.radius"
-                              :fillOpacity="address[index].circle.fillOpacity"
-                              :events="address[index].circle.events"
-                              :strokeColor="address[index].circle.strokeColor"
-                              :strokeStyle="address[index].circle.strokeStyle"
-                              :fillColor="address[index].circle.fillColor">
-              </el-amap-circle>
-            </el-amap>
+            <maps :item="item"></maps>
           </div>
         </div>
       </div>
@@ -68,7 +45,8 @@
 
 <script>
   import Barnner from 'base/barnner/barnner'
-  import {companyList} from 'api/contact-us'
+  import * as api from 'api/contact-us'
+  import Maps from 'base/v-maps/v-maps'
 
   export default {
     name: "contact-us",
@@ -76,110 +54,69 @@
       return {
         companyList: [],
         bgImg: 'http://www.ncs-cyber.com.cn/CompanyWebsite/upload/banner/646b49ef-9cc9-48d3-8b81-76201b142563.jpg',
-        address: [
-          {
-            el:'map1',
-            zoom: 15,
-            center: [116.431405, 39.979933],
-            circle: {
-              clickable: true,
-              center: [116.431405, 39.979933],
-              radius: 200,
-              fillOpacity: 0.3,
-              strokeStyle: 'dashed',
-              fillColor: '#FFFF00',
-              strokeColor: '#00BFFF'
-            },
-            marker: {
-              position: [116.431405, 39.979933],
-              events: {
-                dragend: (e) => {
-                  this.markers[0].position = [e.lnglat.lng, e.lnglat.lat]
-                }
-              },
-              visible: true,
-              draggable: false
-            },
-            mywindow: {
-              position: [116.431405, 39.979933],
-              content: '<h4>国瑞数码</h4>' +
-              '<div class="text item">北京市朝阳区芍药居综合楼3层4层</div>',
-              visible: true,
-              events: {
-                close() {
-                  this.visible = false
-                }
-              }
-            },
-            plugin: {
-              pName: 'Scale',
-              events: {
-                init(instance) {
-                  console.log(instance)
-                }
-              }
-            }
-          },
-          {
-            el:'map2',
-            zoom: 15,
-            center: [117.030488, 36.67327],
-            circle: {
-              clickable: true,
-              center: [117.030488, 36.67327],
-              radius: 200,
-              fillOpacity: 0.3,
-              strokeStyle: 'dashed',
-              fillColor: '#FFFF00',
-              strokeColor: '#00BFFF'
-            },
-            marker: {
-              position: [117.030488, 36.67327],
-              events: {
-                dragend: (e) => {
-                  this.markers[0].position = [e.lnglat.lng, e.lnglat.lat]
-                }
-              },
-              visible: true,
-              draggable: false
-            },
-            mywindow: {
-              position: [117.030488, 36.67327],
-              content: '<h4>国瑞数码</h4>' +
-              '<div class="text item">济南市历下区大明湖路96号</div>',
-              visible: true,
-              events: {
-                close() {
-                  this.visible = false
-                }
-              }
-            },
-            plugin: {
-              pName: 'Scale',
-              events: {
-                init(instance) {
-                  console.log(instance)
-                }
-              }
-            }
-          }
-        ]
       }
     },
-    computed: {},
     created() {
       this._companyList()
     },
     methods: {
       _companyList() {
-        companyList()
+        api.companyList()
           .then(res => {
-            this.companyList = res
+            if (res[0].success === 'true') {
+              const DATA = res[0].data
+              for (let [index, item] of DATA.entries()) {
+                item.map = {
+                  zoom: 15,
+                  center: [item.companyAddressLongitude, item.companyAddressLatitude],
+                  circle: {
+                    clickable: true,
+                    center: [item.companyAddressLongitude, item.companyAddressLatitude],
+                    radius: 200,
+                    fillOpacity: 0.3,
+                    strokeStyle: 'dashed',
+                    fillColor: '#FFFF00',
+                    strokeColor: '#00BFFF'
+                  },
+                  marker: {
+                    position: [item.companyAddressLongitude, item.companyAddressLatitude],
+                    events: {
+                      dragend: (e) => {
+                        this.markers[0].position = [e.lnglat.lng, e.lnglat.lat]
+                      }
+                    },
+                    visible: true,
+                    draggable: false
+                  },
+                  mywindow: {
+                    position: [item.companyAddressLongitude, item.companyAddressLatitude],
+                    content: `<h4>国瑞数码</h4>
+                                <div style="font-size:12px;">${item.companyAddressAddress}</div>`,
+                    visible: true,
+                    events: {
+                      close() {
+                        this.visible = false
+                      }
+                    }
+                  },
+                  plugin: {
+                    pName: 'Scale',
+                    events: {
+                      init(instance) {
+                        console.log(instance)
+                      }
+                    }
+                  }
+                }
+              }
+              this.companyList = DATA
+            }
           })
       }
     },
     components: {
-      Barnner
+      Barnner,
+      Maps
     }
   }
 </script>
@@ -271,5 +208,6 @@
     border: 1px solid #ccc;
     margin-right: 45px;
   }
+
 
 </style>

@@ -20,7 +20,7 @@
                         <span class="circle-wrap">
                             <i class=""></i>
                         </span>
-                    <span class="desc" @click="select(item)">{{item.text}}</span>
+                    <span class="desc" @click="select(item)">{{item.webWorkContentJob}}</span>
                   </li>
                 </ul>
               </div>
@@ -35,7 +35,7 @@
                         <span class="circle-wrap">
                             <i class=""></i>
                         </span>
-                    <span class="desc" @click="select(item)">{{item.text}}</span>
+                    <span class="desc" @click="select(item)">{{item.webWorkContentJob}}</span>
                   </li>
                 </ul>
               </div>
@@ -46,11 +46,11 @@
                   <div class="fl title">福利待遇</div>
                 </div>
                 <ul>
-                  <li>
+                  <li v-for="item in Benefits">
                         <span class="circle-wrap">
                             <i class=""></i>
                         </span>
-                    <span class="desc" @click="select(666)">福利待遇</span>
+                    <span class="desc" @click="select(item)">{{item.webWorkContentJob}}</span>
                   </li>
 
                 </ul>
@@ -67,7 +67,7 @@
 </template>
 
 <script>
-  import {getCampusRecruitment,getSocietyRecruitment,getBenefits,getImgUrl} from 'api/recruitment'
+  import * as api from 'api/recruitment'
   import Barnner from 'base/barnner/barnner'
   import {mapMutations} from 'vuex'
 
@@ -84,8 +84,6 @@
     },
     created() {
       this._getCampusRecruitment()
-      this._getSocietyRecruitment()
-      this._getBenefits()
     },
     mounted() {
       this._initView()
@@ -95,27 +93,20 @@
         set_recruitment:'SET_RECRUITMENT'
       }),
       _getCampusRecruitment() {
-        getCampusRecruitment()
+        api.getRecruitmentList()
           .then(res => {
-            this.campusRecruitment = res
+            if(res[0].success === 'true') {
+              const DATA = res[0].data
+              this.campusRecruitment = DATA.mainBJ
+              this.societyRecruitment = DATA.mainTJ
+              this.Benefits = DATA.mainFl
+            }
           })
 
       },
-      _getSocietyRecruitment() {
-        getSocietyRecruitment()
-          .then(res => {
-            this.societyRecruitment = res
-          })
-      },
-      _getBenefits() {
-        getBenefits()
-          .then(res => {
-            this.Benefits = res
-          })
-      },
       select(item) {
         this.$router.push(
-          {path: `/recruitment/${item.id}`}
+          {path: `/recruitment/recruitmentDetails`}
         )
         this.set_recruitment(item)
       },

@@ -201,6 +201,8 @@
     margin-top: 58px;
     -webkit-flex-wrap: wrap;
     flex-wrap: wrap;
+    -webkit-justify-content: flex-start;
+    justify-content: flex-start;
   }
 
   .main-leadership .flex-item {
@@ -213,6 +215,7 @@
     -moz-box-shadow: 0 0 5px rgba(0, 0, 0, .4);
     box-shadow: 0 0 5px rgba(0, 0, 0, .4);
     margin-bottom: 60px;
+    margin-left: 17px;
     overflow: hidden;
   }
 
