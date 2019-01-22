@@ -38,7 +38,7 @@
         <div class="position-requirements" v-html="recruitmentData.webWorkContentCondition"></div>
         <div class="special-container">
           <h2>优先考虑：</h2>
-          <p>熟悉网络知识、Linux环境、Hadoop生态圈，有海量数据挖掘、机器学习经验者。</p>
+          <p>{{recruitmentData.prioritize}}</p>
         </div>
 
       </div>

@@ -58,6 +58,7 @@
     name: "home",
     data() {
       return {
+        qizhui: 'http://103.231.146.242:28732/cyber/',
         scrollBanners_home: [],
         homeSliderData: [],
         goodProduct: [],
@@ -85,7 +86,7 @@
         api.getImage()
           .then(res => {
             for (let [index, item] of res.entries()) {
-              this.scrollBanners_home.push(item.url)
+              this.scrollBanners_home.push(this.qizhui+item.bannerImgPath)
             }
           })
       },

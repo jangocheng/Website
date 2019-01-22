@@ -21,4 +21,12 @@ let getNav = () => {
   return ajax('get', url)
 }
 
-export {pagings, getListAll, getNav}
+let views = (param) => {
+  let url = `newsCenter/updateNewsCenter_JSONAddViewById.action`
+  return ajax('post', url, {
+    id:param
+  })
+}
+
+export {pagings, getListAll, getNav,views}
+

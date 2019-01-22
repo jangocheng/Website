@@ -13,9 +13,9 @@
                 </div>
                 <div class="fr link-wrap">
                   <span>分享给朋友</span>
-                  <i></i>
-                  <i></i>
-                  <i></i>
+                  <i @click="share(1)"></i>
+                  <i @click="share(2)"></i>
+                  <i @click="share(3)"></i>
                 </div>
               </div>
             </div>
@@ -76,6 +76,7 @@
     created() {
       this._initData()
       this._getRecommend()
+//      this.shareToQq("测试标题","www.baidu.com","http://aladdin-vray.oss-cn-beijing.aliyuncs.com/Other/80de988c-ad11-449b-af48-b5341c957668.jpg");
     },
     mounted() {
       setTimeout(() => {
@@ -86,8 +87,39 @@
       ...mapMutations({
         setNews: 'SET_NEWS'
       }),
+      share(param) {
+        if (param === 1) {
+          let title = "标题" //这个是标题
+          let url = "http://baidu.com/"
+          let picurl = "http://www.asiafinance.cn/u/cms/www/201612/13093246x6zz.jpg"
+          this.shareToQq(title, url, picurl)
+        } else if (param === 2) {
+          let desc = "内容" //这个字段表示是内容并不是标题
+          let url = "http://baidu.com/"
+          let picurl = "http://www.asiafinance.cn/u/cms/www/201612/13093246x6zz.jpg"
+          this.sharetosina(desc, url, picurl)
+        }else {
+          alert('未开发')
+        }
+      },
+      shareToQq(title, url, picurl) {
+        var shareqqzonestring = 'http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?title=' + title + '&url=' + url + '&pics=' + picurl;
+        window.open(shareqqzonestring, 'newwindow', 'height=400,width=400,top=100,left=100');
+      },
+      sharetosina(desc, url, picurl) {
+        var sharesinastring = 'http://v.t.sina.com.cn/share/share.php?title=' + desc + '&url=' + url  + '&pic=' + picurl;
+        window.open(sharesinastring, 'newwindow', 'height=400,width=400,top=100,left=100');
+      },
       praise() {
         api.postPraise(this.news.id)
+          .then(res => {
+            if (res[0].success === 'true') {
+              let message = res[0].message
+              this.message('success', message)
+            } else {
+              this.message('error', '不能频繁点赞，请稍后再试')
+            }
+          })
 
       },
       _initData() {
@@ -113,22 +145,22 @@
         this.setNews(item)
         this._initData()
       },
-      message(content) {
+      message(type, content) {
         this.$message({
           showClose: true,
           message: content,
-          type: 'error'
+          type: type
         })
       },
       search() {
         if (this.searchResult === '') {
-          this.message('搜素内容不能为空！！！')
+          this.message('error', '搜素内容不能为空！！！')
           return
         }
         api.searched(this.searchResult)
           .then(res => {
             if (res.length < 1) {
-              this.message('没有匹配结果')
+              this.message('error', '没有匹配结果')
               return
             }
             this.Recommend = res
@@ -151,17 +183,18 @@
 
 <style scoped lang="scss">
   .praise {
-    width:50px;
-    height:50px;
-    line-height:50px;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
     border-radius: 50%;
-    border:1px solid #ccc;
+    border: 1px solid #ccc;
     text-align: center;
-    margin-left:222px;
-    cursor:pointer;
+    margin-left: 222px;
+    cursor: pointer;
   }
-  .praise:hover{
-    border-color:red;
+
+  .praise:hover {
+    border-color: red;
   }
 
   .news-center-details {

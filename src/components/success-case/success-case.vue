@@ -10,7 +10,7 @@
           </div>
         </div>
         <div class="picWrap">
-          <img :src="pic" alt="" v-for="pic in item.case">
+          <img v-lazy="pic.caseCompanyCompanyPath" alt="" v-for="pic in item.case">
         </div>
       </div>
     </div>
@@ -18,7 +18,7 @@
 </template>
 
 <script>
-  import {successCase} from 'api/success-case'
+  import * as api from 'api/success-case'
   import Barnner from 'base/barnner/barnner'
 
 
@@ -34,12 +34,33 @@
     created() {
       this._successCase()
     },
-    methods:{
-      _successCase(){
-        successCase()
+    methods: {
+      _successCase() {
+        api.successCase()
           .then(res => {
-            this.successCase = res
+            if (res[0].success === 'true') {
+              let titleList = res[0].data.industry
+              let picList = res[0].data.team
+              let arr = []
+              for (let [index, item] of titleList.entries()) {
+                arr.push({
+                  title: item.caseIndustryIndustryName,
+                  subtitle: item.caseIndustryIndustryEnglish,
+                  case: this.case(item.caseIndustryOrder, picList)
+                })
+              }
+              this.successCase = arr
+            }
           })
+      },
+      case(caseIndustryOrder, picList) {
+        let arr = []
+        for (let [index, item] of picList.entries()) {
+          if (item.caseIndustry_id === caseIndustryOrder) {
+            arr.push(item)
+          }
+        }
+        return arr
       }
     },
     components: {

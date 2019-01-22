@@ -122,6 +122,7 @@
         this._getListAll(this.paging)//导航切换调用created （this._getListAll()）  初始化数据
       },
       newItem(item) {
+        api.views(item.id)
         this.$router.push(
           {path: `/newsCenter/newsDetails`}
         )
