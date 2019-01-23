@@ -267,6 +267,7 @@
   .main-leadership .head {
     margin-top: 15px;
     width: 110px;
+    height: 166px;
   }
 
   .main-leadership h2 {

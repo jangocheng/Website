@@ -17,6 +17,7 @@
 
 <script>
   import {swiper, swiperSlide} from 'vue-awesome-swiper'
+
   export default {
     name: 'partner',
     props: {
@@ -45,7 +46,14 @@
 </script>
 
 <style scoped lang="scss">
-  .commonWidth,.partner {
+  .commonWidth {
+    padding: 0 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  .commonWidth, .partner {
     height: 100%;
     overflow: hidden;
   }
@@ -53,12 +61,14 @@
   .swiper-container {
     overflow: visible;
   }
+
   .swiper-slide {
     border: 1px solid #d7d7d7;
     height: 143px;
   }
+
   .swiper-pagination {
-    bottom: -38px;
+    bottom: -38px !important;
   }
 
 

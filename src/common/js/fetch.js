@@ -37,9 +37,9 @@ export function ajax(type, url, params) {
 }
 
 // axios 配置
-// axios.defaults.baseURL = 'http://localhost:3000'
-axios.defaults.baseURL = 'http://103.231.146.242:28732/cyber'
-axios.defaults.timeout = 5000;
+axios.defaults.baseURL = 'http://www.ncs-cyber.com.cn/cyber'
+// axios.defaults.baseURL = 'http://103.231.146.242:28732/cyber'
+// axios.defaults.timeout = 5000;
 
 
 

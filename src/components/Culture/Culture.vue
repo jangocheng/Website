@@ -9,7 +9,7 @@
       <div class=" cultureTop">
         <div class=" item" v-for="item in culture">
           <h2 class="title_Culture">{{item.cultureTitle}}</h2>
-          <img src="./../../assets/Culture/img-Culture.png" alt="">
+          <img v-lazy="item.cultureCulturePath" alt="">
           <div>
             <p>{{item.cultureSubstance}}</p>
           </div>

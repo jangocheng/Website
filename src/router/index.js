@@ -25,6 +25,7 @@ export default new Router({
       return savedPosition
     } else {
       const position = {}
+      console.log(to)
       if (to.hash) {
         position.selector = to.hash
       }
@@ -94,7 +95,10 @@ export default new Router({
       children: [
         {
           path: 'productDetails',
-          component: ProductDetails
+          component: ProductDetails,
+          meta:{
+            isKeepAlive:true
+          }
         }
       ]
     },

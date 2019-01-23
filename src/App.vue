@@ -1,14 +1,15 @@
 <template>
   <div id="app">
-      <homeHeader></homeHeader>
-      <homeNav></homeNav>
-      <div class="content">
-        <transition name="fade" appear >
-          <keep-alive>
-            <router-view></router-view>
-          </keep-alive>
-        </transition>
-      </div>
+    <homeHeader></homeHeader>
+    <homeNav></homeNav>
+    <div class="content">
+      <transition name="fade" appear>
+        <keep-alive>
+          <router-view v-if="!$route.meta.isKeepAlive"></router-view>
+        </keep-alive>
+      </transition>
+      <router-view v-if="$route.meta.isKeepAlive"></router-view>
+    </div>
     <footers></footers>
   </div>
 

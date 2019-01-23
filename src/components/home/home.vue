@@ -85,7 +85,7 @@
       _getImage() {
         api.getImage()
           .then(res => {
-            if(res.success === 'true') {
+            if (res.success === 'true') {
               const DATA = res.data
               for (let [index, item] of DATA.entries()) {
                 this.scrollBanners_home.push(item.bannerImgPath)
@@ -97,7 +97,7 @@
       _getSliderData() {
         api.getSliderData()
           .then(res => {
-            if(res[0].success === 'true') {
+            if (res[0].success === 'true') {
               const DATA = res[0].data
               this.homeSliderData = DATA
             }
@@ -106,7 +106,7 @@
       _getGoodProduct() {
         api.getGoodProduct()
           .then(res => {
-            if(res[0].success === 'true') {
+            if (res[0].success === 'true') {
               const DATA = res[0].data
               this.goodProductList = DATA
             }
@@ -115,7 +115,7 @@
       _getRecentNews() {
         api.getRecentNews()
           .then(res => {
-            if(res[0].success === 'true') {
+            if (res[0].success === 'true') {
               const DATA = res[0].data
               this.recentNews = DATA
             }
@@ -124,7 +124,7 @@
       _partner() {
         api.partner()
           .then(res => {
-            if(res.success === 'true') {
+            if (res.success === 'true') {
               const DATA = res.data
               this.partner = DATA
             }

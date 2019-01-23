@@ -1,5 +1,5 @@
 <template>
-  <div class="product">
+  <div class="product" id="yyy">
     <barnner ref="banner" :bgImg="bgImg"></barnner>
     <div class="container commonWidth" ref="commonWidth">
       <div class="row" v-for="(items, index) in product" :key="index">

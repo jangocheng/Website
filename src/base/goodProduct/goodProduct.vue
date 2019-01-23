@@ -17,34 +17,29 @@
             <p class="row3-item_titleWrap_subtitle">{{Product.EnglishTitle}}</p>
           </div>
           <ul class="row3-item_ul">
-            <li class="cf" v-for="(item,child_index) in Product.item">
+            <li class="cf" v-for="(item,child_index) in Product.item.slice(0,3)">
               <div class="fl">
                 <div class="row3-item_ul_titleWrap">
                   <span>{{child_index + 1}}.</span>
                   <span>{{item.productTitle}}</span>
                 </div>
-                <div v-show="(isHover===index?true:false)" class="row3-item_ul_infoWrap">
+                <div v-show="(isHover === index ? true : false)" class="row3-item_ul_infoWrap">
                   <p class="row3-item_ul_info">
                     <span>功能：</span>
-                    <span>{{item.fun && item.fun[0]}}</span>
-                  </p>
-                  <p class="row3-item_ul_info">
-                    <span>功能：</span>
-                    <span>{{item.fun && item.fun[1]}}</span>
+                    <span>{{item.fun}}</span>
                   </p>
                 </div>
               </div>
               <div class="fr">
-                <button class="row3-item_details" @click="selectDetails">查看详情</button>
+                <button class="row3-item_details" @click="selectDetails(item)">查看详情</button>
               </div>
               <div style="clear:both;"></div>
-              <div v-if="((child_index+1)===Product.item.length)"
-                   v-show="(isHover===index?true:false)"
-                   class=" row3-item_ul_allWrap">
-                <a @click="selectAll" class="row3-item_ul_all" href="javascript:;">查看全部</a>
-              </div>
             </li>
           </ul>
+          <div v-show="(isHover === index ? true : false)"
+               class=" row3-item_ul_allWrap">
+            <a @click="selectAll" class="row3-item_ul_all" href="javascript:;">查看全部</a>
+          </div>
         </div>
       </div>
     </div>
@@ -72,14 +67,14 @@
       ul_infoWrap_leave(index) {
         this.isHover = index
       },
-      selectDetails() {
+      selectDetails(item) {
         this.$router.push(
-          {path: `/product/2`}
+          {path: `/product/productDetails?id=${item.productId}`}
         )
       },
       selectAll() {
         this.$router.push(
-          {path: `/product`, hash: 'tt'}
+          {path: `/product`, hash: 'yyy'}
         )
       }
     }
@@ -187,7 +182,7 @@
 
   .row3-item_ul_info span:nth-child(2) {
     display: inline-block;
-    width: 130px;
+    width: 160px;
     color: #565e62;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -218,7 +213,7 @@
   .row3-item_ul_allWrap {
     display: block;
     text-align: center;
-    margin-top: 21px;
+    margin: 21px 0;
   }
 
   .row3-item_ul_all {

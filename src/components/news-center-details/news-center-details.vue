@@ -98,7 +98,8 @@
       },
       shareToQq() {
         let title = this.newsInfo.title //这个是标题
-        let url = "http://baidu.com/"
+        let url = window.location.href
+        alert(window.location.href)
         let picurl = this.newsInfo.picturePath
         let shareqqzonestring = 'https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?title=' + title + '&url=' + url + '&pics=' + picurl;
         window.open(shareqqzonestring, 'newwindow', 'height=400,width=400,top=100,left=100');
@@ -114,8 +115,7 @@
         api.postPraise(this.news.id)
           .then(res => {
             if (res[0].success === 'true') {
-              let message = res[0].message
-              this.message('success', message)
+              this.message('success', '点赞成功')
             } else {
               this.message('error', '不能频繁点赞，请稍后再试')
             }
@@ -269,6 +269,7 @@
   }
 
   .content {
+    min-height:500px;
     margin-top: 20px;
     overflow: auto;
     border-bottom: 1px solid #d0d2d5;
