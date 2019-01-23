@@ -7,7 +7,7 @@
       </div>
       <swiper :options="swiperOption">
         <swiper-slide v-for="(item, index) in partner" :key="index" :index="index">
-          <img width="100%" height="100%" :src="item.imgUrl" alt="">
+          <img width="100%" height="100%" v-lazy="qizhui+item.caseCompanyCompanyPath" alt="">
         </swiper-slide>
         <div class="swiper-pagination" slot="pagination"></div>
       </swiper>
@@ -26,6 +26,7 @@
     },
     data() {
       return {
+        qizhui: 'http://103.231.146.242:28732/cyber',
         swiperOption: {
           slidesPerView: 4,
           spaceBetween: 30,

@@ -11,17 +11,17 @@ let getSliderData = () => {
 }
 
 let getGoodProduct = () => {
-  const url = '/goodProduct'
+  const url = '/jsonElement/selectProductCategoriesBrowse.action'
   return ajax('get', url)
 }
 
 let getRecentNews = () => {
-  const url = "/recentNews"
+  const url = "/indexPageJson/selectLastTrends.action?&pageSize=6&currentPage=1"
   return ajax('get', url)
 }
 
 let partner = () => {
-  const url = '/partner'
+  let url = '/indexPageJson/selectCooperativePartner.action?newsType=10&pageSize=6&currentPage=1'
   return ajax('get', url)
 }
 

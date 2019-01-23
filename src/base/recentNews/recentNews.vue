@@ -9,9 +9,8 @@
         <el-carousel-item
           v-for="(item,index) in recentNews"
           :key="index">
-          <img width="100%" style="height:100%;" v-lazy="item.imgUrl" alt="">
-          <p
-            style="position:absolute;left:0;bottom:0;z-index: 88;width:100%;line-height:30px;background:rgba(0,0,0,.5);color:#fff;text-indent: 6px;">
+          <img height="100%" width="100%" v-lazy="item.picturePath" alt="">
+          <p class="title">
             {{item.title}}
           </p>
         </el-carousel-item>
@@ -23,11 +22,16 @@
 <script>
   export default {
     name: 'recentNews',
+    data() {
+      return {
+        qizhui: 'http://103.231.146.242:28732/cyber',
+      }
+    },
     props: {
       recentNews: {
         type: Array
       }
-    }
+    },
   }
 </script>
 
@@ -36,7 +40,20 @@
     overflow: hidden;
     height: 100%;
   }
+
   .swiper-slide img {
     width: 100%;
+  }
+
+  .title {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 88;
+    width: 100%;
+    line-height: 30px;
+    background: rgba(0, 0, 0, .5);
+    color: #fff;
+    text-indent: 6px;
   }
 </style>

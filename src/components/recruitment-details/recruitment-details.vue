@@ -8,9 +8,9 @@
         <h3 class="position">{{recruitmentData.webWorkContentJob}}</h3>
         <div class="share-wrap">
           <span class="share-to">分享到</span>
-          <img v-lazy="imgs.qq" alt="x">
-          <img v-lazy="imgs.weibo" alt="x">
-          <img v-lazy="imgs.weixin" alt="x">
+          <img @click="share('qq')" v-lazy="imgs.qq" alt="x">
+          <img @click="share('sina')" v-lazy="imgs.weibo" alt="x">
+          <img @click="share('wx')" v-lazy="imgs.weixin" alt="x">
         </div>
         <div class="position-info">
           <table>
@@ -51,14 +51,15 @@
 
 <script>
   import {mapGetters} from 'vuex'
+  import {getStorage} from 'common/js/storage'
 
   const NUM = '666'
   export default {
     name: "recruitment-details",
     data() {
       return {
-        recruitmentData:'',
-        webWorkContentAddress:'',
+        recruitmentData: '',
+        webWorkContentAddress: '',
         isImg: false
       }
     },
@@ -81,6 +82,27 @@
       }, 20)
     },
     methods: {
+      share(param) {
+        if (param === 'qq') {
+          this.shareToQq(title, url, picurl)
+        } else if (param === 'sina') {
+          this.sharetosina()
+        } else {
+          alert('未开发')
+        }
+      },
+      shareToQq() {
+        let title = this.recruitmentData.webWorkContentJob //这个是标题
+        let url = "http://baidu.com/"
+        let shareqqzonestring = 'https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?title=' + title + '&url=' + url ;
+        window.open(shareqqzonestring, 'newwindow', 'height=400,width=400,top=100,left=100');
+      },
+      sharetosina() {
+        let desc = "内容" //这个字段表示是内容并不是标题
+        let url = "http://baidu.com/"
+        let sharesinastring = 'http://v.t.sina.com.cn/share/share.php?title=' + desc + '&url=' + url ;
+        window.open(sharesinastring, 'newwindow', 'height=400,width=400,top=100,left=100');
+      },
       _initView() {
         let newsCenterDetails = this.$refs.newsCenterDetails
         let prevEle = newsCenterDetails.previousElementSibling
@@ -90,12 +112,12 @@
         this.recruitmentData = this.getCurrentRecruitment()
       },
       getCurrentRecruitment() {
-        if(!this.recruitment.webWorkContentRecrodSchool) {
+        if (!getStorage('recruitment')) {
           this.isImg = true
           this.webWorkContentAddress = this.recruitment.webWorkContentAddress
         }
         let arr = Object.keys(this.recruitment)
-        return arr.length !==0 ? this.recruitment : JSON.parse(localStorage.getItem('recruitment'))
+        return arr.length !== 0 ? this.recruitment : getStorage('recruitment')
       }
     }
   }

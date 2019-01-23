@@ -13,7 +13,7 @@
               {{item.newsTypeTypename}}
             </li>
           </ul>
-          <div class="fr total-number">共<span>{{totals}}</span>篇</div>
+          <div class="fr total-number">共<span> {{totals}} </span>篇</div>
         </div>
         <div class="flex-container">
           <div class="flex-item" v-for="(item,index) in list" :key="index" @click="newItem(item)">
@@ -21,13 +21,13 @@
               <div class="top">
                 <img height="154" v-lazy="item.picturePath" alt="">
                 <h3>{{item.title}}</h3>
-                <i>{{item.source}}</i>
+                <i>来源：{{item.source}}</i>
               </div>
             </div>
             <div class="certificate-desc cf">
               <div class="fl view">{{item.view}}</div>
               <div class="fl heart">{{item.heart}}</div>
-              <div class="fl time">{{item.time}}</div>
+              <div class="fl time">{{item.createtime_String}}</div>
             </div>
           </div>
         </div>
@@ -65,7 +65,7 @@
           pageSize: 8,
           currentPage: 1,
         },
-        totals:0,
+        totals: 0,
         list: [],
         navs: [{"newsTypeTypename": '全部', id: ''}],
         navActive: '全部',
@@ -119,7 +119,8 @@
         this.navActive = item.newsTypeTypename
         this.paging.newsType = item.id
         this.paging.currentPage = 1
-        this._getListAll(this.paging)//导航切换调用created （this._getListAll()）  初始化数据
+        localStorage.setItem('newsType', item.id)
+        this._getListAll(this.paging) //导航切换调用created （this._getListAll()）  初始化数据
       },
       newItem(item) {
         api.views(item.id)

@@ -34,7 +34,7 @@
       <companyProfile :homeSliderData="homeSliderData"></companyProfile>
     </div>
     <div class="row3">
-      <goodProduct :goodProduct="goodProduct"></goodProduct>
+      <goodProduct :goodProductList="goodProductList"></goodProduct>
     </div>
     <div class="row4">
       <recentNews :recentNews="recentNews"></recentNews>
@@ -61,7 +61,7 @@
         qizhui: 'http://103.231.146.242:28732/cyber/',
         scrollBanners_home: [],
         homeSliderData: [],
-        goodProduct: [],
+        goodProductList: [],
         initIndex: 0,
         recentNews: [],
         partner: [],
@@ -85,38 +85,49 @@
       _getImage() {
         api.getImage()
           .then(res => {
-            for (let [index, item] of res.entries()) {
-              this.scrollBanners_home.push(this.qizhui+item.bannerImgPath)
+            if(res.success === 'true') {
+              const DATA = res.data
+              for (let [index, item] of DATA.entries()) {
+                this.scrollBanners_home.push(item.bannerImgPath)
+              }
             }
+
           })
       },
       _getSliderData() {
         api.getSliderData()
           .then(res => {
-            console.log(res)
-            if(res[0].success) {
+            if(res[0].success === 'true') {
               const DATA = res[0].data
               this.homeSliderData = DATA
             }
-//            this.homeSliderData = res
           })
       },
       _getGoodProduct() {
         api.getGoodProduct()
           .then(res => {
-            this.goodProduct = res
+            if(res[0].success === 'true') {
+              const DATA = res[0].data
+              this.goodProductList = DATA
+            }
           })
       },
       _getRecentNews() {
         api.getRecentNews()
           .then(res => {
-            this.recentNews = res
+            if(res[0].success === 'true') {
+              const DATA = res[0].data
+              this.recentNews = DATA
+            }
           })
       },
       _partner() {
         api.partner()
           .then(res => {
-            this.partner = res
+            if(res.success === 'true') {
+              const DATA = res.data
+              this.partner = DATA
+            }
           })
       }
     },
@@ -201,10 +212,6 @@
     height: 433px;
     margin-top: 34px;
     background-color: #373d41;
-  }
-
-  .row3 {
-    height: 660px;
   }
 
   .row4 {

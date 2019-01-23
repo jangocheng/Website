@@ -10,7 +10,7 @@
           class="fl row3-item"
           @mouseenter="ul_infoWrap(index)"
           @mouseleave="ul_infoWrap_leave(index)"
-          v-for="(Product,index) in goodProduct"
+          v-for="(Product,index) in goodProductList"
           :key="index">
           <div class="row3-item_titleWrap">
             <div class="row3-item_titleWrap_title">{{Product.title}}</div>
@@ -21,16 +21,16 @@
               <div class="fl">
                 <div class="row3-item_ul_titleWrap">
                   <span>{{child_index + 1}}.</span>
-                  <span>{{item.title}}</span>
+                  <span>{{item.productTitle}}</span>
                 </div>
                 <div v-show="(isHover===index?true:false)" class="row3-item_ul_infoWrap">
                   <p class="row3-item_ul_info">
                     <span>功能：</span>
-                    <span>{{item.fun[0]}}</span>
+                    <span>{{item.fun && item.fun[0]}}</span>
                   </p>
                   <p class="row3-item_ul_info">
                     <span>功能：</span>
-                    <span>{{item.fun[1]}}</span>
+                    <span>{{item.fun && item.fun[1]}}</span>
                   </p>
                 </div>
               </div>
@@ -61,7 +61,7 @@
       }
     },
     props: {
-      goodProduct: {
+      goodProductList: {
         type: Array
       }
     },

@@ -1,14 +1,18 @@
 import * as mutationTypes from './mutation-types'
+import {setStorage} from 'common/js/storage'
+
 
 const mutations = {
   [mutationTypes.SET_NEWS](state, item) {
     state.news = item
-    localStorage.setItem('news', JSON.stringify(state.news))
+    setStorage('news',state.news)
+    // localStorage.setItem('news', JSON.stringify(state.news))
   },
 
   [mutationTypes.SET_RECRUITMENT](state, item) {
     state.recruitment = item
-    localStorage.setItem('recruitment', JSON.stringify(state.recruitment))
+    setStorage('recruitment',state.recruitment)
+    // localStorage.setItem('recruitment', JSON.stringify(state.recruitment))
   }
 }
 export default mutations

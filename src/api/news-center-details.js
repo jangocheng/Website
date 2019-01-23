@@ -7,14 +7,18 @@ let postPraise = (currentId) => {
   })
 }
 
-let getRecommend = () => {
-  const url = `/news-center`
-  return ajax(type, url)
+let getRecommend = (params) => {
+  const url = `/newsCenter/selectNewsCenter_JSONBrowse.action?newsType=${params}&pageSize=8&recommended=1`
+  return ajax('get', url)
 }
 
 let searched = (param) => {
-  const url = `/news-center?q=${param}`
-  return ajax(type, url)
+  const url = `/newsCenter/selectNewsCenter_JSONBrowse.action`
+  return ajax('get', url,{
+    params:{
+      title:param
+    }
+  })
 }
 
 export {postPraise,getRecommend,searched}

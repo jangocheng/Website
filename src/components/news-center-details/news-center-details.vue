@@ -8,14 +8,14 @@
               <h3>{{newsInfo.title}}</h3>
               <div class="cf">
                 <div class="fl time-wrap">
-                  <span>{{newsInfo.content_time}}</span>
-                  <span>{{newsInfo.name}}</span>
+                  <span>{{newsInfo.createtime_String}}</span>
+                  <span>{{newsInfo.author}}</span>
                 </div>
                 <div class="fr link-wrap">
-                  <span>分享给朋友</span>
-                  <i @click="share(1)"></i>
-                  <i @click="share(2)"></i>
-                  <i @click="share(3)"></i>
+                  <span>分享：</span>
+                  <i @click="share('qq')"></i>
+                  <i @click="share('sina')"></i>
+                  <i @click="share('wx')"></i>
                 </div>
               </div>
             </div>
@@ -57,6 +57,7 @@
 <script>
   import * as api from 'api/news-center-details'
   import {mapMutations, mapGetters} from 'vuex'
+  import {getStorage} from 'common/js/storage'
 
   export default {
     name: "news-center-details",
@@ -76,7 +77,6 @@
     created() {
       this._initData()
       this._getRecommend()
-//      this.shareToQq("测试标题","www.baidu.com","http://aladdin-vray.oss-cn-beijing.aliyuncs.com/Other/80de988c-ad11-449b-af48-b5341c957668.jpg");
     },
     mounted() {
       setTimeout(() => {
@@ -88,26 +88,26 @@
         setNews: 'SET_NEWS'
       }),
       share(param) {
-        if (param === 1) {
-          let title = "标题" //这个是标题
-          let url = "http://baidu.com/"
-          let picurl = "http://www.asiafinance.cn/u/cms/www/201612/13093246x6zz.jpg"
-          this.shareToQq(title, url, picurl)
-        } else if (param === 2) {
-          let desc = "内容" //这个字段表示是内容并不是标题
-          let url = "http://baidu.com/"
-          let picurl = "http://www.asiafinance.cn/u/cms/www/201612/13093246x6zz.jpg"
-          this.sharetosina(desc, url, picurl)
-        }else {
+        if (param === 'qq') {
+          this.shareToQq()
+        } else if (param === 'sina') {
+          this.sharetosina()
+        } else {
           alert('未开发')
         }
       },
-      shareToQq(title, url, picurl) {
-        var shareqqzonestring = 'http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?title=' + title + '&url=' + url + '&pics=' + picurl;
+      shareToQq() {
+        let title = this.newsInfo.title //这个是标题
+        let url = "http://baidu.com/"
+        let picurl = this.newsInfo.picturePath
+        let shareqqzonestring = 'https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?title=' + title + '&url=' + url + '&pics=' + picurl;
         window.open(shareqqzonestring, 'newwindow', 'height=400,width=400,top=100,left=100');
       },
-      sharetosina(desc, url, picurl) {
-        var sharesinastring = 'http://v.t.sina.com.cn/share/share.php?title=' + desc + '&url=' + url  + '&pic=' + picurl;
+      sharetosina() {
+        let desc = "内容" //这个字段表示是内容并不是标题
+        let url = ""
+        let picurl = this.newsInfo.picturePath
+        let sharesinastring = 'http://v.t.sina.com.cn/share/share.php?title=' + desc + '&url=' + url + '&pic=' + picurl;
         window.open(sharesinastring, 'newwindow', 'height=400,width=400,top=100,left=100');
       },
       praise() {
@@ -131,15 +131,14 @@
         prevEle.style.display = 'none'
       },
       _getRecommend() {
-//        api.getRecommend()
-//          .then(res => {
-////            测试:截取前三条
-//            let arr = []
-//            for (let i = 0; i < 3; i++) {
-//              arr.push(res[i])
-//            }
-//            this.Recommend = arr
-//          })
+//        console.log(this.newsInfo)
+        api.getRecommend(localStorage.getItem('newsType'))
+          .then(res => {
+            if (res[0].success === 'true') {
+              const DATA = res[0].data
+              this.Recommend = DATA
+            }
+          })
       },
       recommendDetail(item) {
         this.setNews(item)
@@ -159,18 +158,17 @@
         }
         api.searched(this.searchResult)
           .then(res => {
-            if (res.length < 1) {
-              this.message('error', '没有匹配结果')
-              return
+            if (res[0].success === 'true') {
+              const DATA = res[0].data
+              DATA.length != 0 ? this.Recommend = DATA : this.message('error', '没有匹配内容！！！')
             }
-            this.Recommend = res
           })
       },
       EventListerWindowReload() {//解决浏览器刷新getters取不到值的bug。
         if (this.news.id) {
           return this.news
         }
-        return JSON.parse(localStorage.getItem('news'))
+        return getStorage('news')
       }
     },
     watch: {

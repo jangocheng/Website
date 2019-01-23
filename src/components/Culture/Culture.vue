@@ -6,8 +6,8 @@
         <h2 class="title">企业文化</h2>
         <h4 class="subtitle">未来，我们共同展望</h4>
       </div>
-      <div class="cf cultureTop">
-        <div class="fl item" v-for="item in culture">
+      <div class=" cultureTop">
+        <div class=" item" v-for="item in culture">
           <h2 class="title_Culture">{{item.cultureTitle}}</h2>
           <img src="./../../assets/Culture/img-Culture.png" alt="">
           <div>
