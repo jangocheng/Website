@@ -38,7 +38,7 @@
           </ul>
           <div v-show="(isHover === index ? true : false)"
                class=" row3-item_ul_allWrap">
-            <a @click="selectAll" class="row3-item_ul_all" href="javascript:;">查看全部</a>
+            <a @click="selectAll(Product)" class="row3-item_ul_all" href="javascript:;">查看全部</a>
           </div>
         </div>
       </div>
@@ -72,9 +72,9 @@
           {path: `/product/productDetails?id=${item.productId}`}
         )
       },
-      selectAll() {
+      selectAll(Product) {
         this.$router.push(
-          {path: `/product`, hash: 'yyy'}
+          {path: `/product`, query: {y: 457}}
         )
       }
     }

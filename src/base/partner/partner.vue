@@ -5,7 +5,7 @@
         <h3>核心合作伙伴</h3>
         <p>每一个合作伙伴我们都认真对待</p>
       </div>
-      <swiper :options="swiperOption">
+      <swiper class="swiperPadding" :options="swiperOption">
         <swiper-slide v-for="(item, index) in partner" :key="index" :index="index">
           <img width="100%" height="100%" v-lazy="qizhui+item.caseCompanyCompanyPath" alt="">
         </swiper-slide>
@@ -27,10 +27,10 @@
     },
     data() {
       return {
-        qizhui: 'http://103.231.146.242:28732/cyber',
+        qizhui: 'http://www.ncs-cyber.com.cn/CompanyWebsite',
         swiperOption: {
           slidesPerView: 4,
-          spaceBetween: 30,
+          spaceBetween: 24,
           pagination: {
             el: '.swiper-pagination',
             clickable: true
@@ -46,12 +46,7 @@
 </script>
 
 <style scoped lang="scss">
-  .commonWidth {
-    padding: 0 10px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-  }
+
 
   .commonWidth, .partner {
     height: 100%;
@@ -59,6 +54,10 @@
   }
 
   .swiper-container {
+    padding: 0 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
     overflow: visible;
   }
 

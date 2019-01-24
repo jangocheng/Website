@@ -24,7 +24,7 @@
     name: 'recentNews',
     data() {
       return {
-        qizhui: 'http://103.231.146.242:28732/cyber',
+        qizhui: 'http://www.ncs-cyber.com.cn/CompanyWebsite',
       }
     },
     props: {

@@ -25,13 +25,16 @@ export default new Router({
       return savedPosition
     } else {
       const position = {}
-      console.log(to)
       if (to.hash) {
         position.selector = to.hash
       }
       if (to.matched.some(m => m.meta.scrollToTop)) {
         position.x = 0
         position.y = 0
+      }
+      if(to.query.y > 0) {
+        position.x = 0
+        position.y = to.query.y
       }
       return position
     }

@@ -1,8 +1,10 @@
 <template>
-  <div class="product" id="yyy">
+  <div class="product">
     <barnner ref="banner" :bgImg="bgImg"></barnner>
     <div class="container commonWidth" ref="commonWidth">
-      <div class="row" v-for="(items, index) in product" :key="index">
+      <div class="row" :id="items.EnglishTitle+items.id"
+           v-for="(items, index) in product"
+           :key="index">
         <h3 class="title">
           <span>{{items.title}}</span>
         </h3>
