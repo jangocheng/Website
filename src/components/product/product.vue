@@ -12,7 +12,7 @@
           <swiper-slide v-for="(childItem,index) in items.item"
                         :key="index"
                         @click.native="select(childItem)">
-            <img v-lazy="domain+childItem.productImageImagePath" alt="">
+            <img v-lazy="childItem.productImageImagePath" alt="">
             <p>{{childItem.productTitle}}</p>
           </swiper-slide>
           <div class="swiper-button-next" slot="button-next"></div>

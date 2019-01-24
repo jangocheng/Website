@@ -6,7 +6,7 @@ let pagings = () => {
 }
 
 let getListAll = (param) => {
-  const url = '/newsCenter/selectNewsCenter_JSONBrowse.action'
+  const url = `/newsCenter/selectNewsCenter_JSONBrowse.action`
   return ajax('get', url, {
     params: {
       newsType: param.newsType,
@@ -24,9 +24,9 @@ let getNav = () => {
 let views = (param) => {
   let url = `newsCenter/updateNewsCenter_JSONAddViewById.action`
   return ajax('post', url, {
-    id:param
+    id: param
   })
 }
 
-export {pagings, getListAll, getNav,views}
+export {pagings, getListAll, getNav, views}
 

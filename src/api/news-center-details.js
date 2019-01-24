@@ -1,11 +1,11 @@
 import {ajax} from 'common/js/fetch'
 
 let postPraise = (currentId) => {
-  const url ='/newsCenter/updateNewsCenter_JSONAddHeartById.action'
-  // const url ='http://103.231.146.242:28732/cyber/newsCenter/updateNewsCenter_JSONAddHeartById.action'
+  // const url ='/newsCenter/updateNewsCenter_JSONAddHeartById.action'
+  const url ='http://103.231.146.242:28732/cyber/newsCenter/updateNewsCenter_JSONAddHeartById.action'
   return ajax('post',url,{
     id:currentId
-  })
+  },{withCredentials: true})
 }
 
 let getRecommend = (params) => {

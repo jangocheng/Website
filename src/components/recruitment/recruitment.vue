@@ -102,7 +102,6 @@
               this.Benefits = DATA.mainFl
             }
           })
-
       },
       select(item) {
         this.$router.push(

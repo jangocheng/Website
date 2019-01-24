@@ -19,7 +19,7 @@
           <div class="flex-item" v-for="(item,index) in list" :key="index" @click="newItem(item)">
             <div class="certificate-img">
               <div class="top">
-                <img height="154" v-lazy="item.picturePath" alt="">
+                <img width="100%" height="154" :src="item.picturePath" alt="">
                 <h3>{{item.title}}</h3>
                 <i>来源：{{item.source}}</i>
               </div>
@@ -75,7 +75,7 @@
     computed: {
       total: function () {
         return this.totals
-      }
+      },
     },
     created() {
       this._getListAll()
@@ -120,7 +120,7 @@
         this.paging.newsType = item.id
         this.paging.currentPage = 1
         localStorage.setItem('newsType', item.id)
-        this._getListAll(this.paging) //导航切换调用created （this._getListAll()）  初始化数据
+        this._getListAll() //导航切换调用created （this._getListAll()）  初始化数据
       },
       newItem(item) {
         api.views(item.id)

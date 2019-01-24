@@ -45,7 +45,13 @@
             </div>
             <h4 class="right_recommend">为您推荐</h4>
             <ul class="recommend-list">
-              <li v-for="(item,index) in Recommend" :key="index" @click="recommendDetail(item)">{{item.title}}</li>
+              <li v-for="(item,index) in Recommend.slice(0,5)"
+                  v-if="Recommend.length"
+                  :key="index"
+                  @click="recommendDetail(item)">
+                {{item.title}}
+              </li>
+              <li v-if="!Recommend.length">无</li>
             </ul>
           </div>
         </div>
@@ -120,7 +126,6 @@
               this.message('error', '不能频繁点赞，请稍后再试')
             }
           })
-
       },
       _initData() {
         this.newsInfo = this.EventListerWindowReload()
@@ -131,7 +136,6 @@
         prevEle.style.display = 'none'
       },
       _getRecommend() {
-//        console.log(this.newsInfo)
         api.getRecommend(localStorage.getItem('newsType'))
           .then(res => {
             if (res[0].success === 'true') {
@@ -201,7 +205,6 @@
 
   .left {
     width: 900px;
-    /*height: 864px;*/
     background-color: #fff;
     padding: 0 24px;
     -webkit-box-sizing: border-box;
@@ -210,19 +213,18 @@
   }
 
   .head {
-    height: 98px;
     border-bottom: 1px solid #d0d2d5;
   }
 
   .head h3 {
-    padding: 29px 0 13px 0;
-    font-size: 26px;
+    padding: 29px 0 20px 0;
+    font-size: 22px;
     color: #273b46;
     font-weight: normal;
   }
 
   .head .time-wrap {
-    color: #b9c4d8;
+    color: #8791a5;
   }
 
   .time-wrap span:nth-child(2) {
@@ -231,7 +233,7 @@
 
   .link-wrap span {
     margin-right: 24px;
-    color: #b9c4d8;
+    color: #273b46;
     vertical-align: text-top;
   }
 
