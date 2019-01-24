@@ -262,7 +262,7 @@
   }
 
   .right {
-    width: 276px;
+    width: 300px;
     background-color: #fff;
     padding: 16px;
     -webkit-box-sizing: border-box;
@@ -332,21 +332,20 @@
   .search-wrap input {
     width: 100%;
     border-radius: 14px;
-    height: 28px;
-    line-height: 28px;
-    text-indent: 6px;
+    height: 36px;
+    line-height: 36px;
+    text-indent: 18px;
     border: 1px solid #d0d2d5;
     outline: none;
     padding-right: 30px;
     -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
     box-sizing: border-box;
   }
 
   .search-wrap .icon-search {
     position: absolute;
     right: 0;
-    top: 0;
+    top: 4px;
   }
 
   .right_recommend {
@@ -363,7 +362,7 @@
 
   .recommend-list li {
     line-height: 20px;
-    padding: 12px;
+    padding: 12px 18px;
     font-size: 12px;
     color: #494e5f;
     border-bottom: 1px solid #d0d2d5;
