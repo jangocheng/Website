@@ -90,12 +90,12 @@
     },
     methods: {
       ...mapMutations({
-        set_recruitment:'SET_RECRUITMENT'
+        set_recruitment: 'SET_RECRUITMENT'
       }),
       _getCampusRecruitment() {
         api.getRecruitmentList()
           .then(res => {
-            if(res[0].success === 'true') {
+            if (res[0].success === 'true') {
               const DATA = res[0].data
               this.campusRecruitment = DATA.mainBJ
               this.societyRecruitment = DATA.mainTJ
@@ -134,7 +134,6 @@
   .fade-enter, .fade-leave-to {
     opacity: 0;
   }
-
 
   .introduce-wrap {
     margin-top: 23px;
@@ -222,8 +221,8 @@
     margin-left: 21px;
     color: #555555;
     cursor: pointer;
-    &:hover{
-      color:#0b3e6f;
+    &:hover {
+      color: #0b3e6f;
     }
   }
 
