@@ -112,7 +112,8 @@
         this.recruitmentData = this.getCurrentRecruitment()
       },
       getCurrentRecruitment() {
-        if (!getStorage('recruitment')) {
+        console.log(getStorage('recruitment').work)
+        if (!getStorage('recruitment').work) {
           this.isImg = true
           this.webWorkContentAddress = this.recruitment.webWorkContentAddress
         }

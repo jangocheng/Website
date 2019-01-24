@@ -9,7 +9,7 @@
         <el-carousel-item
           v-for="(item,index) in recentNews"
           :key="index">
-          <img height="100%" width="100%" v-lazy="item.picturePath" alt="">
+          <img height="100%" width="100%" :src="item.picturePath" alt="">
           <p class="title">
             {{item.title}}
           </p>
