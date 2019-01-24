@@ -19,7 +19,7 @@
           <div class="flex-item" v-for="(item,index) in list" :key="index" @click="newItem(item)">
             <div class="certificate-img">
               <div class="top">
-                <img width="100%" height="154" :src="item.picturePath" alt="">
+                <img width="100%" height="154" v-lazy="item.picturePath" :key="item.picturePath" alt="">
                 <h3>{{item.title}}</h3>
                 <i>来源：{{item.source}}</i>
               </div>
