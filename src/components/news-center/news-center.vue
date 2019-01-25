@@ -53,7 +53,7 @@
 <script>
   import * as api from 'api/news-center'
   import Barnner from 'base/barnner/barnner'
-  import {mapMutations} from 'vuex'
+  import {mapMutations, mapGetters} from 'vuex'
 
 
   export default {
@@ -69,13 +69,16 @@
         list: [],
         navs: [{"newsTypeTypename": '全部', id: ''}],
         navActive: '全部',
-        bgImg: 'http://www.ncs-cyber.com.cn/CompanyWebsite/upload/banner/646b49ef-9cc9-48d3-8b81-76201b142563.jpg'
+        bgImg: 'http://www.ncs-cyber.com.cn/CompanyWebsite/upload/banner/new-banr.png'
       }
     },
     computed: {
       total: function () {
         return this.totals
       },
+      ...mapGetters([
+        'newsRecordList',
+      ])
     },
     created() {
       this._getListAll()
@@ -89,8 +92,9 @@
     },
     methods: {
       ...mapMutations({
-        setNews: 'SET_NEWS'
+        setNews: 'SET_NEWS',
       }),
+
       _getNav() {
         api.getNav()
           .then(res => {
@@ -128,7 +132,6 @@
           {path: `/newsCenter/newsDetails`}
         )
         this.setNews(item)
-
       },
       initView() {
         let wrap = this.$refs.wrap

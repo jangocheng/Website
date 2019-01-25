@@ -27,7 +27,7 @@
     data() {
       return {
         successCase: [],
-        bgImg: 'http://www.ncs-cyber.com.cn/CompanyWebsite/upload/banner/646b49ef-9cc9-48d3-8b81-76201b142563.jpg'
+        bgImg: 'http://www.ncs-cyber.com.cn/CompanyWebsite/upload/banner/email-banr.png'
 
       }
     },

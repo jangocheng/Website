@@ -215,11 +215,11 @@
   }
 
   .row4 {
-    border: 1px solid #fff;
+    /*border: 1px solid #fff;*/
     padding-bottom: 16px;
   }
 
   .row5 {
-    height: 343px;
+    height: 460px;
   }
 </style>

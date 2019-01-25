@@ -4,7 +4,7 @@
       <el-carousel-item
         v-for="(item,index) in scrollBanners_home"
         :key="index">
-        <img :src="item" alt="加载失败" >
+        <img width="100%" :src="item" alt="加载失败" >
       </el-carousel-item>
     </el-carousel>
   </div>

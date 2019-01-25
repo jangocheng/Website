@@ -7,7 +7,7 @@
       </div>
       <swiper class="swiperPadding" :options="swiperOption">
         <swiper-slide v-for="(item, index) in partner" :key="index" :index="index">
-          <img width="100%" height="100%" v-lazy="qizhui+item.caseCompanyCompanyPath" alt="">
+          <img  v-lazy="qizhui+item.caseCompanyCompanyPath" alt="">
         </swiper-slide>
         <div class="swiper-pagination" slot="pagination"></div>
       </swiper>
@@ -62,8 +62,11 @@
   }
 
   .swiper-slide {
-    border: 1px solid #d7d7d7;
-    height: 143px;
+    /*border: 1px solid #d7d7d7;*/
+    height: 230px;
+    img{
+      border: 1px solid #d7d7d7;
+    }
   }
 
   .swiper-pagination {

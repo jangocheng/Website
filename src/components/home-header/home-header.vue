@@ -7,7 +7,7 @@
         <span class="header-top_weixin_down" ref="headerTopWeixinDown"></span>
         <transition name="myCode">
           <div class="weixin_code" v-show="state" @mouseenter="state=false">
-            <img src="http://www.ncs-cyber.com.cn/image/about_wx.png" alt="">
+            <img src="./img-weixin.jpg" alt="">
           </div>
         </transition>
       </div>

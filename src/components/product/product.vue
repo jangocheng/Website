@@ -41,7 +41,7 @@
         slidesPerView: 3,
         spaceBetween: 50,
         slidesPerGroup: 3,
-        bgImg: 'http://www.ncs-cyber.com.cn/CompanyWebsite/upload/banner/646b49ef-9cc9-48d3-8b81-76201b142563.jpg',
+        bgImg: 'http://www.ncs-cyber.com.cn/CompanyWebsite/upload/banner/product.png',
         swiperOption: {
           slidesPerView: 4,
           spaceBetween: 30,

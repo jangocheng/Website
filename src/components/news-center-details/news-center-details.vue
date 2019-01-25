@@ -1,7 +1,7 @@
 <template>
   <div class="news-center-details" ref="newsCenterDetails">
     <div class="commonWidth cf">
-      <section >
+      <section>
         <div class="fl left">
           <header>
             <div class="head">
@@ -26,17 +26,17 @@
             </div>
           </section>
           <div class="cf tools">
-            <div class="fl prev">
-              <div class="text-overflow">上一篇：苗圩部长赴青海考察ffffffffffffffffffff</div>
-            </div>
-            <div class="fl praise" @click="praise">赞</div>
-            <div class="fr next">
-              <div class="text-overflow">下一篇：没有了</div>
-            </div>
+            <!--<div class="fl prev">-->
+              <!--<div class="text-overflow">上一篇：{{prevNews !=undefined?prevNews.title:'没有了'}}</div>-->
+            <!--</div>-->
+            <div class=" praise" @click="praise">赞</div>
+            <!--<div class="fr next">-->
+              <!--<div class="text-overflow">下一篇：{{nextNews !=undefined?nextNews.title:'没有了'}}</div>-->
+            <!--</div>-->
           </div>
         </div>
       </section>
-      <aside >
+      <aside>
         <div class="fr right">
           <div>
             <div class="search-wrap">
@@ -72,12 +72,17 @@
         qizhui: 'http://103.231.146.242:28732/cyber',
         newsInfo: {},
         Recommend: [],
-        searchResult: ''
+        searchResult: '',
+        prevNews:'',
+        nextNews:''
       }
     },
     computed: {
       ...mapGetters([
-        'news'
+        'news',
+        'newsRecordList',
+        'newsIndex',
+        'currentNews'
       ]),
     },
     created() {
@@ -87,12 +92,14 @@
     mounted() {
       setTimeout(() => {
         this._initView()
+
       }, 20)
     },
     methods: {
       ...mapMutations({
-        setNews: 'SET_NEWS'
+        setNews: 'SET_NEWS',
       }),
+
       share(param) {
         if (param === 'qq') {
           this.shareToQq()
@@ -197,7 +204,7 @@
     border-radius: 50%;
     border: 1px solid #ccc;
     text-align: center;
-    margin-left: 222px;
+    margin:0 auto;
     cursor: pointer;
   }
 
