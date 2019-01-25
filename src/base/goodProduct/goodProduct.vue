@@ -11,6 +11,7 @@
           @mouseenter="ul_infoWrap(index)"
           @mouseleave="ul_infoWrap_leave(index)"
           v-for="(Product,index) in goodProductList"
+          :class="{custormScale:index===custormScaleIndex}"
           :key="index">
           <div class="row3-item_titleWrap">
             <div class="row3-item_titleWrap_title">{{Product.title}}</div>
@@ -53,6 +54,7 @@
     data() {
       return {
         isHover: IS_HOVER,
+        custormScaleIndex : 1
       }
     },
     props: {
@@ -63,6 +65,7 @@
     methods: {
       ul_infoWrap(index) {
         this.isHover = index
+        this.custormScaleIndex = index
       },
       ul_infoWrap_leave(index) {
         this.isHover = index
@@ -98,13 +101,31 @@
 
   .goodProductContainer {
     .row3-item:nth-child(2) {
+      margin: 0;
+    }
+
+    .custormScale {
+      border: 1px solid #00c1de;
       margin: 0 16px;
+      transform: scale(1.15);
+      background:#fff;
+      .row3-item_titleWrap{
+        background-color: #373d41;
+        .row3-item_titleWrap_title,
+        .row3-item_titleWrap_subtitle{
+          color:#fff;
+        }
+      }
+      .row3-item_details {
+        margin-top: 58px;
+      }
     }
   }
 
-  .row3-item:hover {
-    border: 1px solid #00c1de;
-  }
+  /*.row3-item:hover {*/
+    /*border: 1px solid #00c1de;*/
+    /*transform: scale(1.3);*/
+  /*}*/
 
   .row3-item_titleWrap {
     height: 96px;
@@ -112,6 +133,7 @@
     background-color: #e5e5e5;
     padding-left: 30px;
     padding-top: 30px;
+    /*background-color: #373d41;*/
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -221,17 +243,17 @@
     text-decoration: none;
   }
 
-  .row3-item:hover .row3-item_titleWrap {
-    background-color: #373d41;
-  }
+  /*.row3-item:hover .row3-item_titleWrap {*/
+    /*background-color: #373d41;*/
+  /*}*/
 
-  .row3-item:hover .row3-item_titleWrap_title {
-    color: #fff;
-  }
+  /*.row3-item:hover .row3-item_titleWrap_title {*/
+    /*color: #fff;*/
+  /*}*/
 
-  .row3-item:hover .row3-item_titleWrap_subtitle {
-    color: #fff;
-  }
+  /*.row3-item:hover .row3-item_titleWrap_subtitle {*/
+    /*color: #fff;*/
+  /*}*/
 
   .row3-item:hover .row3-item_ul_titleWrap span:nth-child(2) {
     font-weight: bold;
