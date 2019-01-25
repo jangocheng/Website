@@ -80,7 +80,7 @@
 
   .center {
     text-align: center;
-    background-color: #fff;
+    background-color: #f7f7f7;
     width: 300px;
     margin: 0 auto;
   }

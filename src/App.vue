@@ -2,7 +2,7 @@
   <div id="app">
     <homeHeader></homeHeader>
     <homeNav></homeNav>
-    <div class="content">
+    <div class="contentContainer">
       <transition name="fade" appear>
         <keep-alive>
           <router-view v-if="!$route.meta.isKeepAlive"></router-view>
@@ -52,9 +52,9 @@
     opacity: 0;
   }
 
-  .content {
+  .contentContainer {
     position: relative;
-
+    background:#f7f7f7;
   }
 
 </style>

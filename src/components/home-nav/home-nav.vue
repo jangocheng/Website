@@ -67,7 +67,6 @@
 
   .header-bottom .commonWidth ul li {
     float: left;
-    margin-right: 20px;
   }
 
   .header-bottom .commonWidth ul li a {
@@ -76,7 +75,7 @@
     line-height: 27px;
     font-size: 16px;
     color: #000000;
-    padding: 0 15px;
+    padding: 0 21px;
     text-decoration: none;
     border: 1px solid #fff;
   }
@@ -84,7 +83,7 @@
   .header-bottom .commonWidth ul li a.active {
     color: #24b8cf;
     border: 1px solid #24b8cf;
-    border-radius: 2px;
+    border-radius: 20px;
   }
 
   .header-bottom-subTab {

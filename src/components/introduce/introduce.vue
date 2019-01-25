@@ -58,7 +58,7 @@
   .introduce-wrap {
     margin-top: 23px;
     margin-bottom: 23px;
-    box-shadow: 0 0 6px #ccc;
+    box-shadow: 0 0 6px #e0e0e0;
   }
 
   .content {
