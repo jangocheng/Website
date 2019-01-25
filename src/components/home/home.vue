@@ -4,7 +4,7 @@
     <div class="row1">
       <div class="commonWidth">
         <div class="commonTitle">
-          <h3>国瑞1，不仅仅是一家安全公司</h3>
+          <h3>国瑞，不仅仅是一家安全公司</h3>
           <p>我们坚持我们的信仰，为用户打造真正有价值的服务平台</p>
         </div>
         <div class="cf row1-item-wrap">

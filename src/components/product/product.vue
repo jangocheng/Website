@@ -105,6 +105,9 @@
 </script>
 
 <style scoped lang="scss">
+  .product{
+    height:100%;
+  }
   .fade-enter-active, .fade-leave-active {
     transition: opacity .2s;
   }
