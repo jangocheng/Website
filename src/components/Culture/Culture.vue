@@ -20,10 +20,10 @@
         <h4 class="subtitle">未来，我们共同展望</h4>
       </div>
       <!--轮播图-->
-      <el-carousel style="overflow: hidden;" height="300px" trigger="click" type="card">
+      <el-carousel style="overflow: hidden;" height="430px" trigger="click" type="card">
         <el-carousel-item
           v-for="(item, index) in life" :key="index" :index="index">
-          <img width="100%" height="100%" :src="qizhui+item.imagePhotoPhoto" alt="">
+          <img width="100%" :src="qizhui+item.imagePhotoPhoto" alt="">
         </el-carousel-item>
       </el-carousel>
     </div>
@@ -86,7 +86,7 @@
 
   .commonWidth {
     background: #fff;
-    padding-bottom: 10px;
+    padding:0 10px 10px 10px;
     border: 1px solid transparent;
     margin-top: 30px;
   }

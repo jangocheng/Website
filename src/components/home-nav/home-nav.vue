@@ -36,9 +36,9 @@
         nav: [
           {"name": "首页", "url": "/home"},
           {"name": "关于国瑞", "url": "/introduce"},
-          {"name": "新闻中心", "url": "/newsCenter"},
           {"name": "产品信息", "url": "/product"},
           {"name": "成功案例", "url": "/successCase"},
+          {"name": "新闻中心", "url": "/newsCenter"},
           {"name": "人才招聘", "url": "/recruitment"},
           {"name": "联系我们", "url": "/contactUs"}
         ],
@@ -56,7 +56,7 @@
   }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
   .header-bottom {
     height: 93px;
   }
@@ -109,7 +109,12 @@
     cursor: pointer;
   }
 
-  .header-bottom-subTab ul li.active {
+  .header-bottom-subTab ul  {
+    .router-link-active{
+      color: #00d8ff;
+    }
+  }
+  .header-bottom-subTab ul li:hover{
     color: #00d8ff;
   }
 

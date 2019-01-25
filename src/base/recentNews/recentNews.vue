@@ -5,11 +5,11 @@
         <h3>最新动态</h3>
         <p>每一件动态都是我们成长的见证</p>
       </div>
-      <el-carousel style="overflow: hidden;" height="250px" trigger="click" type="card">
+      <el-carousel style="overflow: hidden;"   trigger="click" type="card">
         <el-carousel-item
           v-for="(item,index) in recentNews"
           :key="index">
-          <img height="100%" width="100%" :src="item.picturePath" alt="">
+          <img :src="item.picturePath" alt="" width="100%">
           <p class="title">
             {{item.title}}
           </p>
@@ -36,6 +36,7 @@
 </script>
 
 <style scoped lang="scss">
+
   .commonWidth {
     overflow: hidden;
     height: 100%;
