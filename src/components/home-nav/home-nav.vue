@@ -84,6 +84,7 @@
     color: #24b8cf;
     border: 1px solid #24b8cf;
     border-radius: 20px;
+    font-weight: bold;
   }
 
   .header-bottom-subTab {

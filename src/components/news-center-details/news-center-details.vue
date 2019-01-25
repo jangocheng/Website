@@ -1,7 +1,7 @@
 <template>
   <div class="news-center-details" ref="newsCenterDetails">
-    <div class="commonWidth cf" style="margin:29px auto 60px auto;">
-      <section>
+    <div class="commonWidth cf">
+      <section >
         <div class="fl left">
           <header>
             <div class="head">
@@ -36,7 +36,7 @@
           </div>
         </div>
       </section>
-      <aside>
+      <aside >
         <div class="fr right">
           <div>
             <div class="search-wrap">
@@ -184,6 +184,12 @@
 </script>
 
 <style scoped lang="scss">
+  .commonWidth {
+    margin: 29px auto 60px auto;
+    background: #fff;
+    border-radius: 6px;
+  }
+
   .praise {
     width: 50px;
     height: 50px;
@@ -206,7 +212,7 @@
   .left {
     width: 900px;
     background-color: #fff;
-    padding: 0 24px;
+    padding: 0 24px 24px 24px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -271,7 +277,7 @@
   }
 
   .content {
-    min-height:500px;
+    min-height: 500px;
     margin-top: 20px;
     overflow: auto;
     border-bottom: 1px solid #d0d2d5;
