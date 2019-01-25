@@ -211,9 +211,9 @@
     height: 380px;
     background-color: #fff;
     text-align: center;
-    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, .4);
-    -moz-box-shadow: 0 0 5px rgba(0, 0, 0, .4);
-    box-shadow: 0 0 5px rgba(0, 0, 0, .4);
+    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, .1);
+    -moz-box-shadow: 0 0 5px rgba(0, 0, 0, .1);
+    box-shadow: 0 0 5px rgba(0, 0, 0, .1);
     margin-bottom: 60px;
     margin-left: 17px;
     overflow: hidden;
@@ -262,6 +262,8 @@
   .personal-info {
     line-height: 28px;
     color: #666666;
+    text-align: justify;
+    text-indent: 2em;
   }
 
   .main-leadership .head {

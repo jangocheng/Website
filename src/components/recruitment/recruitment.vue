@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="height:100%;">
     <barnner ref="banner" :bgImg="bgImg"></barnner>
     <div class="commonWidth" ref="commonWidth">
       <div class="introduce-wrap">
