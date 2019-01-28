@@ -84,7 +84,7 @@
     methods: {
       share(param) {
         if (param === 'qq') {
-          this.shareToQq(title, url, picurl)
+          this.shareToQq()
         } else if (param === 'sina') {
           this.sharetosina()
         } else {
@@ -93,13 +93,13 @@
       },
       shareToQq() {
         let title = this.recruitmentData.webWorkContentJob //这个是标题
-        let url = "http://baidu.com/"
+        let url = window.location.href
         let shareqqzonestring = 'https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?title=' + title + '&url=' + url ;
         window.open(shareqqzonestring, 'newwindow', 'height=400,width=400,top=100,left=100');
       },
       sharetosina() {
-        let desc = "内容" //这个字段表示是内容并不是标题
-        let url = "http://baidu.com/"
+        let desc = "" //这个字段表示是内容并不是标题
+        let url = window.location.href
         let sharesinastring = 'http://v.t.sina.com.cn/share/share.php?title=' + desc + '&url=' + url ;
         window.open(sharesinastring, 'newwindow', 'height=400,width=400,top=100,left=100');
       },

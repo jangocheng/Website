@@ -2,7 +2,9 @@
   <div>
     <div class="footer-top">
       <div class="cf commonWidth">
-        <div class="fl"></div>
+        <div class="fl footer-top_logo">
+          <img src="./logo.jpg" alt="">
+        </div>
         <div class="fl footer-top-mL">
           <div class="footer-top_icon footer-top_location"></div>
           <div class="footer-top_info">

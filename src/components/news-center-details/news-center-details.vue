@@ -12,7 +12,7 @@
                   <span>{{newsInfo.author}}</span>
                 </div>
                 <div class="fr link-wrap">
-                  <span>分享：</span>
+                  <span>分享到：</span>
                   <i @click="share('qq')"></i>
                   <i @click="share('sina')"></i>
                   <i @click="share('wx')"></i>
@@ -112,14 +112,13 @@
       shareToQq() {
         let title = this.newsInfo.title //这个是标题
         let url = window.location.href
-        alert(window.location.href)
         let picurl = this.newsInfo.picturePath
         let shareqqzonestring = 'https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?title=' + title + '&url=' + url + '&pics=' + picurl;
         window.open(shareqqzonestring, 'newwindow', 'height=400,width=400,top=100,left=100');
       },
       sharetosina() {
         let desc = "内容" //这个字段表示是内容并不是标题
-        let url = ""
+        let url = window.location.href
         let picurl = this.newsInfo.picturePath
         let sharesinastring = 'http://v.t.sina.com.cn/share/share.php?title=' + desc + '&url=' + url + '&pic=' + picurl;
         window.open(sharesinastring, 'newwindow', 'height=400,width=400,top=100,left=100');
@@ -245,7 +244,6 @@
   }
 
   .link-wrap span {
-    margin-right: 24px;
     color: #273b46;
     vertical-align: text-top;
   }
