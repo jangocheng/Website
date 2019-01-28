@@ -81,10 +81,9 @@
   }
 
   .header-bottom .commonWidth ul li a.active {
-    color: #24b8cf;
-    border: 1px solid #24b8cf;
+    color: #0051bc;
+    border: 1px solid #0044b4;
     border-radius: 20px;
-    font-weight: bold;
   }
 
   .header-bottom-subTab {

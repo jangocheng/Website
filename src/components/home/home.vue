@@ -11,7 +11,8 @@
           <div class="fl row1-item">
             <div class="row1-item_icon row1-item_iconGY"></div>
             <h3>企业格言</h3>
-            <p>团结 自信 创造 发展</p>
+            <p>团结 自信</p>
+            <p>创造 发展</p>
           </div>
           <div class="fl row1-item row1-itemCenter">
             <div class="row1-item_icon  row1-item_iconSM"></div>

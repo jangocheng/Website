@@ -1,5 +1,5 @@
 <template>  <!--:style="{backgroundImage:'url('+bgImg+')'}"-->
-  <div class="barnner" v-lazy:background-image="bgImg"></div>
+  <div class="barnner" :style="{backgroundImage:'url('+bgImg+')'}"></div>
 </template>
 
 <script>
