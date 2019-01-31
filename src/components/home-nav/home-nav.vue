@@ -1,7 +1,7 @@
 <template>
   <div class="header-bottom">
     <div class="cf commonWidth">
-      <img class="fl header-bottom_img" :src="iconLogo" alt="">
+      <img class="fl header-bottom_img" v-lazy="iconLogo" alt="">
       <div class="fr">
         <ul>
           <router-link @mouseenter.native="addClas(item.name)"
@@ -9,9 +9,7 @@
                        tag="li"
                        :to="item.url"
                        :key="index">
-            <a :class="{active:nav_active===item.name}" href="">
-              {{item.name}}
-            </a>
+            {{item.name}}
           </router-link>
         </ul>
       </div>
@@ -24,6 +22,7 @@
         <router-link tag="li" to="/qualificationHonor">资质荣誉</router-link>
         <router-link tag="li" to="/culture">企业文化</router-link>
       </ul>
+      <div class="sliderBorder"></div>
     </div>
   </div>
 </template>
@@ -34,7 +33,7 @@
     data() {
       return {
         nav: [
-          {"name": "首页", "url": "/home"},
+          {"name": "首页", "url": "/index"},
           {"name": "关于国瑞", "url": "/introduce"},
           {"name": "产品信息", "url": "/product"},
           {"name": "成功案例", "url": "/successCase"},
@@ -59,31 +58,32 @@
 <style scoped lang="scss">
   .header-bottom {
     height: 93px;
-  }
-
-  .header-bottom .commonWidth ul {
-    margin-top: 46px;
-  }
-
-  .header-bottom .commonWidth ul li {
-    float: left;
-  }
-
-  .header-bottom .commonWidth ul li a {
-    display: inline-block;
-    height: 27px;
-    line-height: 27px;
-    font-size: 16px;
-    color: #000000;
-    padding: 0 21px;
-    text-decoration: none;
-    border: 1px solid #fff;
-  }
-
-  .header-bottom .commonWidth ul li a.active {
-    color: #0051bc;
-    border: 1px solid #0044b4;
-    border-radius: 20px;
+    .commonWidth ul {
+      margin-top: 46px;
+      li {
+        float: left;
+        height: 27px;
+        line-height: 27px;
+        font-size: 16px;
+        color: #000000;
+        padding: 0 15px;
+        text-decoration: none;
+        border: 1px solid #fff;
+        cursor: pointer;
+        margin-left: 8px;
+        transition: .5s;
+        &:hover {
+          color: #005bf5;
+          border-bottom: 2px dashed #004ff5;
+          padding-bottom: 8px;
+        }
+        &.router-link-active {
+          color: #0051bc;
+          border-bottom: 2px solid #0044b4;
+          padding-bottom: 8px;
+        }
+      }
+    }
   }
 
   .header-bottom-subTab {
@@ -95,30 +95,36 @@
     height: 52px;
     line-height: 52px;
     background-color: rgba(0, 0, 0, .3);
-  }
-
-  .header-bottom-subTab ul {
-    margin-left: 30%;
-  }
-
-  .header-bottom-subTab ul li {
-    float: left;
-    color: #fff;
-    margin-right: 62px;
-    cursor: pointer;
-  }
-
-  .header-bottom-subTab ul  {
-    .router-link-active{
-      color: #00d8ff;
+    ul {
+      margin-left: 30%;
+      li {
+        float: left;
+        color: #fff;
+        margin-right: 62px;
+        cursor: pointer;
+        &.router-link-active {
+          color: #00d8ff;
+        }
+        &:hover {
+          color: #00d8ff;
+        }
+      }
     }
-  }
-  .header-bottom-subTab ul li:hover{
-    color: #00d8ff;
+    &:hover .sliderBorder {
+      width:99%;
+      border-width:1px;
+    }
   }
 
   .header-bottom_img {
     margin-top: 21px;
+  }
+
+  .sliderBorder {
+    border: 0 dotted #0abdff;
+    width: 0;
+    margin:0 auto;
+    transition: 1s;
   }
 
 </style>

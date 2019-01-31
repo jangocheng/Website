@@ -1,6 +1,6 @@
 <template>
   <div class="development-catalogue">
-    <barnner ref="banner" :bgImg="bgImg"></barnner>
+    <barnner ref="banner" :bgImg="bgImg" :isWx="true"></barnner>
     <div id="cd-timeline" class="cd-container">
       <div class="cd-timeline-block"
            v-for="(item,index) in timeList"
@@ -31,7 +31,7 @@
       return {
         color: ['#75ce66', '#c03b44', '#f0ca45', '#31f05e', '#58f0c0', '#4aa4f0', '#7f73f0', '#b46ff0', '#f068ec', '#f07f94', '#f0c187','#75ce66', '#c03b44', '#f0ca45', '#31f05e', '#58f0c0', '#4aa4f0', '#7f73f0', '#b46ff0', '#f068ec', '#f07f94', '#f0c187', '#f0ca45', '#31f05e', '#58f0c0', '#4aa4f0'],
         timeList: [],
-        bgImg: 'http://www.ncs-cyber.com.cn/CompanyWebsite/upload/banner/646b49ef-9cc9-48d3-8b81-76201b142563.jpg'
+        bgImg: 'http://www.ncs-cyber.com.cn/CompanyWebsite/upload/banner/about.png'
       }
     },
     created() {

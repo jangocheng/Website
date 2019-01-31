@@ -12,7 +12,6 @@ const mutations = {
     state.recruitment = item
     setStorage('recruitment', state.recruitment)
   },
-
 }
 export default mutations
 

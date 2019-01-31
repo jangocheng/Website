@@ -1,5 +1,5 @@
 const state = {
   news:{},
-  recruitment:{}
+  recruitment:{},
 }
 export default state
