@@ -7,7 +7,7 @@
       </div>
       <swiper class="swiperPadding" :options="swiperOption">
         <swiper-slide v-for="(item, index) in partner" :key="index" :index="index">
-          <img  v-lazy="qizhui+item.caseCompanyCompanyPath" alt="">
+          <img v-lazy="qizhui+item.caseCompanyCompanyPath" alt="">
         </swiper-slide>
         <div class="swiper-pagination" slot="pagination"></div>
       </swiper>
@@ -29,8 +29,9 @@
       return {
         qizhui: 'http://www.ncs-cyber.com.cn/CompanyWebsite',
         swiperOption: {
-          slidesPerView: 4,
-          spaceBetween: 24,
+          slidesPerView: 'auto',
+          spaceBetween: 34,
+          slidesPerGroup : 4,
           pagination: {
             el: '.swiper-pagination',
             clickable: true
@@ -46,26 +47,25 @@
 </script>
 
 <style scoped lang="scss">
-
-
   .commonWidth, .partner {
     height: 100%;
     overflow: hidden;
   }
 
   .swiper-container {
-    padding: 0 10px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
     overflow: visible;
   }
 
   .swiper-slide {
-    /*border: 1px solid #d7d7d7;*/
-    height: 230px;
-    img{
-      border: 1px solid #d7d7d7;
+    width: 268px;
+    height: 144px;
+    line-height: 144px;
+    text-align: center;
+    border: 1px solid #d7d7d7;
+    background: #fff;
+    box-shadow: 0 0 4px #ccc;
+    img {
+      vertical-align: middle;
     }
   }
 

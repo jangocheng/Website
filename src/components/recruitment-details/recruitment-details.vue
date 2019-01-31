@@ -88,7 +88,7 @@
         } else if (param === 'sina') {
           this.sharetosina()
         } else {
-          alert('未开发')
+          this.message('success', '敬请期待')
         }
       },
       shareToQq() {
