@@ -46,7 +46,7 @@ export default new Router({
       component: Home
     },
     {
-      path: '/home',
+      path: '/index',
       component: Home
     },
     {

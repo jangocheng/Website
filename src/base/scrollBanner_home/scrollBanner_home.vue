@@ -1,10 +1,10 @@
 <template>
   <div class="scrollBanner_home">
-    <el-carousel style="overflow: hidden;"  trigger="click">
+    <el-carousel style="" height="528px" trigger="click">
       <el-carousel-item
         v-for="(item,index) in scrollBanners_home"
         :key="index">
-        <img width="100%" :src="item" alt="加载失败" >
+        <img width="100%" :src="item" alt="加载失败">
       </el-carousel-item>
     </el-carousel>
   </div>

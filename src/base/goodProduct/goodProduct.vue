@@ -85,6 +85,9 @@
 </script>
 
 <style scoped lang="scss">
+  .commonTitle{
+    margin-bottom:80px;
+  }
   .row3-item {
     width: 388px;
     min-height: 379px;
@@ -92,11 +95,11 @@
     -webkit-box-shadow: 0 0 6px rgba(10, 2, 4, .12);
     -moz-box-shadow: 0 0 6px rgba(10, 2, 4, .12);
     box-shadow: 0 0 6px rgba(10, 2, 4, .12);
-    -webkit-transition: 1s linear;
-    -moz-transition: 1s linear;
-    -ms-transition: 1s linear;
-    -o-transition: 1s linear;
-    transition: 1s linear;
+    -webkit-transition: .3s linear;
+    -moz-transition: .3s linear;
+    -ms-transition: .3s linear;
+    -o-transition: .3s linear;
+    transition: .3s linear;
   }
 
   .goodProductContainer {

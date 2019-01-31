@@ -10,7 +10,12 @@
           </div>
         </div>
         <div class="picWrap">
-          <img v-lazy="pic.caseCompanyCompanyPath" alt="" v-for="pic in item.case">
+          <div class="pic_item" v-for="pic in item.case">
+            <div style="margin-top:20px;">
+              <img v-lazy="pic.caseCompanyCompanyPath" alt="" height="62">
+              <p>{{pic.caseCompanyCompanyName}}</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -27,7 +32,7 @@
     data() {
       return {
         successCase: [],
-        bgImg: 'http://www.ncs-cyber.com.cn/CompanyWebsite/upload/banner/email-banr.png'
+        bgImg: 'http://www.ncs-cyber.com.cn/CompanyWebsite/upload/banner/success.png'
 
       }
     },
@@ -50,6 +55,7 @@
                 })
               }
               this.successCase = arr
+              console.log(this.successCase)
             }
           })
       },
@@ -97,9 +103,33 @@
   }
 
   .picWrap {
-    font-size: 0;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    &:after {
+      content: "";
+      flex: auto;
+    }
+    .pic_item{
+      width: 268px;
+      height: 144px;
+      border: 1px solid #dcdcdc;
+      background-color: #fff;
+      margin: 15px;
+      text-align: center;
+      box-shadow: 0 0 4px #ccc;
+      p{
+        margin-top:20px;
+        color: #5b5b5b;
+      }
+    }
     img {
       border: none;
+      vertical-align: middle;
     }
   }
+
 </style>

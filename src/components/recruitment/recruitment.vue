@@ -1,6 +1,6 @@
 <template>
   <div style="height:100%;">
-    <barnner ref="banner" :bgImg="bgImg"></barnner>
+    <barnner ref="banner" :bgImg="bgImg" :isWx="true"></barnner>
     <div class="commonWidth" ref="commonWidth">
       <div class="introduce-wrap">
         <div class="commonCategory">
@@ -79,7 +79,7 @@
         campusRecruitment: [],
         societyRecruitment: [],
         Benefits: [],
-        bgImg: 'http://www.ncs-cyber.com.cn/CompanyWebsite/upload/banner/email-banr.png'
+        bgImg: 'http://www.ncs-cyber.com.cn/CompanyWebsite/upload/banner/job-banr.png'
       }
     },
     created() {

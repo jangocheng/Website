@@ -21,7 +21,7 @@ let getRecentNews = () => {
 }
 
 let partner = () => {
-  let url = '/indexPageJson/selectCooperativePartner.action?newsType=10&pageSize=6&currentPage=1'
+  let url = '/indexPageJson/selectCooperativePartner.action?newsType=10&pageSize=36&currentPage=1'
   return ajax('get', url)
 }
 

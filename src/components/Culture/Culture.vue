@@ -1,6 +1,6 @@
 <template>
   <div class="Culture">
-    <barnner ref="banner" :bgImg="bgImg"></barnner>
+    <barnner ref="banner" :bgImg="bgImg" :isWx="true"></barnner>
     <div class="commonWidth">
       <div class="titleWrap">
         <h2 class="title">企业文化</h2>
@@ -45,7 +45,7 @@
         leis: 'swiper-container9',
         life: [],
         culture: [],
-        bgImg: 'http://www.ncs-cyber.com.cn/CompanyWebsite/upload/banner/646b49ef-9cc9-48d3-8b81-76201b142563.jpg'
+        bgImg: 'http://www.ncs-cyber.com.cn/CompanyWebsite/upload/banner/about.png'
       }
     },
     created() {

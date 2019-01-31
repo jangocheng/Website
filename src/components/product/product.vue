@@ -1,6 +1,6 @@
 <template>
   <div class="product">
-    <barnner ref="banner" :bgImg="bgImg"></barnner>
+    <barnner ref="banner" :bgImg="bgImg" :isWx="true"></barnner>
     <div class="container commonWidth" ref="commonWidth">
       <div class="row" :id="items.EnglishTitle+items.id"
            v-for="(items, index) in product"

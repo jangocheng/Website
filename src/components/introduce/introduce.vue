@@ -1,6 +1,6 @@
 <template>
   <div class="introduce">
-    <barnner ref="banner" :bgImg="bgImg"></barnner>
+    <barnner ref="banner" :bgImg="bgImg" :isWx="true"></barnner>
     <div class="commonWidth">
       <div class="introduce-wrap">
         <div class="commonCategory">
@@ -25,7 +25,7 @@
     name: "introduce",
     data() {
       return {
-        bgImg: 'http://www.ncs-cyber.com.cn/CompanyWebsite/upload/banner/646b49ef-9cc9-48d3-8b81-76201b142563.jpg',
+        bgImg: 'http://www.ncs-cyber.com.cn/CompanyWebsite/upload/banner/about.png',
         content:''
       }
     },

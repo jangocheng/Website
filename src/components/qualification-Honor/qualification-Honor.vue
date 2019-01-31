@@ -1,6 +1,6 @@
 <template>
   <div class="qualification-Honor">
-    <barnner ref="banner" :bgImg="bgImg"></barnner>
+    <barnner ref="banner" :bgImg="bgImg" :isWx="true"></barnner>
     <div class="commonWidth">
       <div class="commonCategory title">
         <h3>关于国瑞 > 资质荣誉</h3>
@@ -19,6 +19,7 @@
           @current-change="currentChange"
           background
           :page-size="pageSize"
+          :current-page="curPage"
           layout="prev, pager, next"
           :total="total">
         </el-pagination>
@@ -35,34 +36,35 @@
     name: "qualification--honor",
     data() {
       return {
-        pageSize: 12,
+        pageSize: 8,
+        curPage: 1,
         getCredentialList: [],
-        bgImg: 'http://www.ncs-cyber.com.cn/CompanyWebsite/upload/banner/646b49ef-9cc9-48d3-8b81-76201b142563.jpg',
-      }
-    },
-    computed: {
-      total: function () {
-        return this.getCredentialList.length
+        total: 0,
+        bgImg: 'http://www.ncs-cyber.com.cn/CompanyWebsite/upload/banner/about.png',
       }
     },
     created() {
       this._getCredentialList()
     },
-
+//    computed: {
+//      total: function () {
+//        return this.tot
+//      }
+//    },
     methods: {
       _getCredentialList() {
-        getCredentialList()
+        getCredentialList(this.pageSize, this.curPage)
           .then(res => {
             if (res[0].success) {
               const DATA = res[0].data
               this.getCredentialList = DATA
+              this.total = res[0].totalRows
             }
-
           })
       },
-      currentChange(size) {
-//        this.pageSize 每页多少条
-//        size 当前页
+      currentChange(currentPage) {
+        this.curPage = currentPage
+        this._getCredentialList()
       }
     },
     components: {
@@ -71,7 +73,7 @@
   }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
   .qualification-Honor {
     height: 100%;
@@ -92,7 +94,8 @@
     -webkit-flex-wrap: wrap;
     flex-wrap: wrap;
   }
-  .flex-container:after{
+
+  .flex-container:after {
     content: '';
     width: 280px;
   }
@@ -104,12 +107,16 @@
     margin-bottom: 27px;
     margin-left: 16px;
     background-color: #fff;
-
+    overflow: hidden;
   }
 
   .certificate-img {
     height: calc(100% - 46px);
     text-align: center;
+    transition: 1s;
+    &:hover {
+      transform: scale(1.2);
+    }
   }
 
   .certificate-img img {

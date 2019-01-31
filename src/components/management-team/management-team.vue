@@ -1,6 +1,6 @@
 <template>
   <div class="management-team">
-    <barnner ref="banner" :bgImg="bgImg"></barnner>
+    <barnner ref="banner" :bgImg="bgImg" :isWx="true"></barnner>
     <div class="commonWidth" style="border:1px solid transparent;">
       <h4 class="commonTitleWrap">
         <strong>主要领导人</strong>
@@ -50,7 +50,7 @@
       return {
         teamRatio: [],
         teamDetails: [],
-        bgImg: 'http://www.ncs-cyber.com.cn/CompanyWebsite/upload/banner/646b49ef-9cc9-48d3-8b81-76201b142563.jpg'
+        bgImg: 'http://www.ncs-cyber.com.cn/CompanyWebsite/upload/banner/about.png'
       }
     },
     created() {
