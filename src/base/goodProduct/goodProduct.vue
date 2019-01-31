@@ -54,7 +54,7 @@
     data() {
       return {
         isHover: IS_HOVER,
-        custormScaleIndex : 1
+        custormScaleIndex: 1
       }
     },
     props: {
@@ -85,9 +85,10 @@
 </script>
 
 <style scoped lang="scss">
-  .commonTitle{
-    margin-bottom:80px;
+  .commonTitle {
+    margin-bottom: 80px;
   }
+
   .row3-item {
     width: 388px;
     min-height: 379px;
@@ -110,12 +111,12 @@
     .custormScale {
       border: 1px solid #00c1de;
       transform: scale(1.15);
-      background:#fff;
-      .row3-item_titleWrap{
+      background: #fff;
+      .row3-item_titleWrap {
         background-color: #373d41;
         .row3-item_titleWrap_title,
-        .row3-item_titleWrap_subtitle{
-          color:#fff;
+        .row3-item_titleWrap_subtitle {
+          color: #fff;
         }
       }
       .row3-item_details {
@@ -208,6 +209,7 @@
   }
 
   .row3-item_details {
+    padding:0;
     margin-top: 35px;
     width: 74px;
     height: 26px;
@@ -240,15 +242,15 @@
   }
 
   /*.row3-item:hover .row3-item_titleWrap {*/
-    /*background-color: #373d41;*/
+  /*background-color: #373d41;*/
   /*}*/
 
   /*.row3-item:hover .row3-item_titleWrap_title {*/
-    /*color: #fff;*/
+  /*color: #fff;*/
   /*}*/
 
   /*.row3-item:hover .row3-item_titleWrap_subtitle {*/
-    /*color: #fff;*/
+  /*color: #fff;*/
   /*}*/
 
   .row3-item:hover .row3-item_ul_titleWrap span:nth-child(2) {
