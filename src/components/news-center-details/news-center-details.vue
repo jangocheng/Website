@@ -285,6 +285,7 @@
     margin-top: 20px;
     overflow: auto;
     border-bottom: 1px solid #d0d2d5;
+    padding:0 40px;
   }
 
   .describe {

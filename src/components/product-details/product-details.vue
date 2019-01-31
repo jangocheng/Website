@@ -77,6 +77,7 @@
     box-shadow: 0 0 10px #e8e8e8;
     border: solid 1px #e8e8e8;
     border-radius: 5px;
+    background:#fff;
   }
 
   .container-child {
