@@ -25,7 +25,6 @@
 <style scoped lang="scss">
   .barnner {
     height: 400px;
-    background-color: rgba(0, 0, 0, 0.73);
     background-position: center center;
     background-repeat: no-repeat;
   }
