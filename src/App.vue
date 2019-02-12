@@ -2,7 +2,7 @@
   <div id="app">
     <homeHeader></homeHeader>
     <homeNav></homeNav>
-    <div class="contentContainer">
+    <div class="app-contentContainer">
       <transition name="fade" appear>
         <keep-alive>
           <router-view v-if="!$route.meta.isKeepAlive"></router-view>
@@ -16,16 +16,12 @@
 </template>
 
 <script>
-  import {addClass, removeClass} from "./common/js/addClass";
   import HomeHeader from './components/home-header/home-header'
   import HomeNav from './components/home-nav/home-nav'
   import Footers from './components/footer/footer'
 
   export default {
     name: 'App',
-    created() {
-      this.bottomCode = require('common/img/icon-erweima.png')
-    },
     components: {
       HomeHeader,
       HomeNav,
@@ -52,9 +48,10 @@
     opacity: 0;
   }
 
-  .contentContainer {
+  .app-contentContainer {
     position: relative;
-    background:#f7f7f7;
+    background: rgba(237, 237, 237, 0.59);
+    overflow: hidden;
   }
 
 </style>

@@ -62,6 +62,7 @@
         type: Array
       }
     },
+
     methods: {
       ul_infoWrap(index) {
         this.isHover = index
@@ -72,7 +73,7 @@
       },
       selectDetails(item) {
         this.$router.push(
-          {path: `/product/productDetails?id=${item.productId}`}
+          {path: `/product/productDetails?id=${item.productId}`,query: {y: 500}}
         )
       },
       selectAll(Product) {
@@ -85,6 +86,10 @@
 </script>
 
 <style scoped lang="scss">
+  .goodProduct {
+    position: relative;
+  }
+
   .commonTitle {
     margin-bottom: 80px;
   }
@@ -110,17 +115,21 @@
 
     .custormScale {
       border: 1px solid #00c1de;
-      transform: scale(1.15);
+      -moz-transform: scale(1.1);
+      transform: scale(1.1);
       background: #fff;
+      .row3-item_ul_titleWrap{
+        margin-top: 15px;
+      }
       .row3-item_titleWrap {
-        background-color: #373d41;
+        background-color: rgba(0, 198, 228, 0.9);
         .row3-item_titleWrap_title,
         .row3-item_titleWrap_subtitle {
           color: #fff;
         }
       }
       .row3-item_details {
-        margin-top: 58px;
+        margin-top: 30px;
       }
     }
   }
@@ -162,14 +171,18 @@
   .row3-item_ul li {
     min-height: 85px;
     border-bottom: 1px solid #dcdcdc;
-    padding-bottom: 18px;
+    /*padding-bottom: 18px;*/
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
   }
 
   .row3-item_ul_titleWrap {
-    margin-top: 38px;
+    margin-top: 30px;
+    width: 265px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 
   .row3-item_ul_titleWrap span:nth-child(1) {
@@ -195,7 +208,7 @@
   }
 
   .row3-item_ul_info span:nth-child(1) {
-    color: #ff8a00;
+    color: #565e62;
     vertical-align: super;
   }
 
@@ -209,8 +222,8 @@
   }
 
   .row3-item_details {
-    padding:0;
-    margin-top: 35px;
+    padding: 0;
+    margin-top: 31px;
     width: 74px;
     height: 26px;
     line-height: 26px;
@@ -237,21 +250,9 @@
   }
 
   .row3-item_ul_all {
-    color: #ff4800;
+    color: #00c1de;
     text-decoration: none;
   }
-
-  /*.row3-item:hover .row3-item_titleWrap {*/
-  /*background-color: #373d41;*/
-  /*}*/
-
-  /*.row3-item:hover .row3-item_titleWrap_title {*/
-  /*color: #fff;*/
-  /*}*/
-
-  /*.row3-item:hover .row3-item_titleWrap_subtitle {*/
-  /*color: #fff;*/
-  /*}*/
 
   .row3-item:hover .row3-item_ul_titleWrap span:nth-child(2) {
     font-weight: bold;
@@ -263,7 +264,8 @@
   }
 
   .row3-item:hover .row3-item_details {
-    margin-top: 58px;
+    margin-top: 30px;
   }
+
 
 </style>
