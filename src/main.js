@@ -4,8 +4,8 @@ import router from './router'
 import axios from 'axios'
 import VueAMap from 'vue-amap'
 import VueLazyload from 'vue-lazyload'
-import store from './store'
 import "babel-polyfill"
+import store from './store'
 import 'swiper/dist/css/swiper.css'
 import {Pagination, Carousel, CarouselItem, Message} from 'element-ui'
 
@@ -19,7 +19,6 @@ Vue.use(VueLazyload, {
   error: require('common/img/fileError.jpg'),
   loading: require('common/img/loading_logo.png')
 })
-
 
 VueAMap.initAMapApiLoader({
   key: '',

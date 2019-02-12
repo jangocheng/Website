@@ -41,14 +41,14 @@
   }
 
   .row2-img1_top div {
-    height: 14px;
-    margin-top: 166px;
+    height: 57px;
+    margin-top: 130px;
     margin-bottom: 68px;
     background: url(./../../assets/home-img/icon-ruanjian.png) no-repeat center center;
   }
 
   .row2-img1_top p {
-    font-size: 27px;
+    font-size: 22px;
     color: #fff;
     text-align: center;
     font-weight: bold;
@@ -61,14 +61,14 @@
   }
 
   .row2-img2_top div {
-    height: 52px;
-    margin-top: 127px;
+    height: 57px;
+    margin-top: 130px;
     margin-bottom: 68px;
     background: url(./../../assets/home-img/icon-icp.png) no-repeat center center;
   }
 
   .row2-img2_top p {
-    font-size: 27px;
+    font-size: 22px;
     color: #fff;
     text-align: center;
     font-weight: bold;
@@ -81,14 +81,14 @@
   }
 
   .row2-img3_top div {
-    height: 55px;
-    margin-top: 122px;
+    height: 57px;
+    margin-top: 130px;
     margin-bottom: 68px;
     background: url(./../../assets/home-img/icon-idc.png) no-repeat center center;
   }
 
   .row2-img3_top p {
-    font-size: 27px;
+    font-size: 22px;
     color: #fff;
     text-align: center;
     font-weight: bold;
@@ -101,14 +101,14 @@
   }
 
   .row2-img4_top div {
-    height: 40px;
-    margin-top: 138px;
+    height: 57px;
+    margin-top: 130px;
     margin-bottom: 68px;
     background: url(./../../assets/home-img/icon-data.png) no-repeat center center;
   }
 
   .row2-img4_top p {
-    font-size: 27px;
+    font-size: 22px;
     color: #fff;
     text-align: center;
     font-weight: bold;
@@ -121,14 +121,14 @@
   }
 
   .row2-img5_top div {
-    height: 51px;
-    margin-top: 126px;
+    height: 57px;
+    margin-top: 130px;
     margin-bottom: 68px;
     background: url(./../../assets/home-img/icon-web.png) no-repeat center center;
   }
 
   .row2-img5_top p {
-    font-size: 27px;
+    font-size: 22px;
     color: #fff;
     text-align: center;
     font-weight: bold;
