@@ -28,5 +28,10 @@
     background-position: center center;
     background-repeat: no-repeat;
   }
+  @media all and (max-width: 1920px) {
+    .barnner {
+      background-size:cover;
+    }
+  }
 
 </style>

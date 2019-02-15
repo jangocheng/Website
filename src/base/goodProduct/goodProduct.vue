@@ -18,23 +18,23 @@
             <p class="row3-item_titleWrap_subtitle">{{Product.EnglishTitle}}</p>
           </div>
           <ul class="row3-item_ul">
-            <li class="cf" v-for="(item,child_index) in Product.item.slice(0,3)">
+            <li class="cf" v-for="(item,child_index) in Product.item.slice(0,4)">
               <div class="fl">
                 <div class="row3-item_ul_titleWrap">
                   <span>{{child_index + 1}}.</span>
                   <span>{{item.productTitle}}</span>
                 </div>
-                <div v-show="(isHover === index ? true : false)" class="row3-item_ul_infoWrap">
-                  <p class="row3-item_ul_info">
-                    <span>功能：</span>
-                    <span>{{item.fun}}</span>
-                  </p>
-                </div>
+                <!--<div v-show="(isHover === index ? true : false)" class="row3-item_ul_infoWrap">-->
+                  <!--<p class="row3-item_ul_info">-->
+                    <!--<span>功能：</span>-->
+                    <!--<span>{{item.fun}}</span>-->
+                  <!--</p>-->
+                <!--</div>-->
               </div>
               <div class="fr">
                 <button class="row3-item_details" @click="selectDetails(item)">查看详情</button>
               </div>
-              <div style="clear:both;"></div>
+              <!--<div style="clear:both;"></div>-->
             </li>
           </ul>
           <div v-show="(isHover === index ? true : false)"
@@ -96,7 +96,7 @@
 
   .row3-item {
     width: 388px;
-    min-height: 379px;
+    /*min-height: 379px;*/
     border: 1px solid #dcdcdc;
     -webkit-box-shadow: 0 0 6px rgba(10, 2, 4, .12);
     -moz-box-shadow: 0 0 6px rgba(10, 2, 4, .12);
@@ -119,7 +119,7 @@
       transform: scale(1.1);
       background: #fff;
       .row3-item_ul_titleWrap{
-        margin-top: 15px;
+        /*margin-top: 15px;*/
       }
       .row3-item_titleWrap {
         background-color: rgba(0, 198, 228, 0.9);
@@ -129,7 +129,7 @@
         }
       }
       .row3-item_details {
-        margin-top: 30px;
+        /*margin-top: 30px;*/
       }
     }
   }
@@ -153,7 +153,7 @@
   .row3-item_titleWrap_title {
     font-size: 18px;
     color: #333333;
-    margin: 0 0 15px 0;
+    /*margin: 0 0 15px 0;*/
   }
 
   .row3-item_titleWrap_subtitle {
@@ -169,7 +169,8 @@
   }
 
   .row3-item_ul li {
-    min-height: 85px;
+    height: 60px;
+    line-height: 60px;
     border-bottom: 1px solid #dcdcdc;
     /*padding-bottom: 18px;*/
     -webkit-box-sizing: border-box;
@@ -178,7 +179,7 @@
   }
 
   .row3-item_ul_titleWrap {
-    margin-top: 30px;
+    /*margin-top: 30px;*/
     width: 265px;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -223,7 +224,7 @@
 
   .row3-item_details {
     padding: 0;
-    margin-top: 31px;
+    /*margin-top: 31px;*/
     width: 74px;
     height: 26px;
     line-height: 26px;
@@ -264,7 +265,7 @@
   }
 
   .row3-item:hover .row3-item_details {
-    margin-top: 30px;
+    /*margin-top: 30px;*/
   }
 
 

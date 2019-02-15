@@ -315,8 +315,8 @@
 
   .row2 {
     height: 433px;
-    margin-top: 34px;
-    background-color: #373d41;
+    margin-top: 116px;
+    background-color: #fff;
   }
   .row3{
     position: relative;

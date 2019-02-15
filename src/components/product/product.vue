@@ -9,10 +9,10 @@
           <span>{{items.title}}</span>
         </h3>
         <swiper :options="swiperOption">
-          <swiper-slide v-for="(childItem,index) in items.item"
+          <swiper-slide style="width:373px;" v-for="(childItem,index) in items.item"
                         :key="index"
                         @click.native="select(childItem)">
-            <img v-lazy="childItem.productImageImagePath" alt="">
+            <img width="100%" v-lazy="childItem.productImageImagePath" alt="">
             <p>{{childItem.productTitle}}</p>
           </swiper-slide>
           <div class="swiper-button-next" slot="button-next"></div>
@@ -38,13 +38,11 @@
       return {
         domain: 'http://www.ncs-cyber.com.cn/CompanyWebsite/',
         product: [],
-        slidesPerView: 3,
-        spaceBetween: 50,
-        slidesPerGroup: 3,
         bgImg: 'http://www.ncs-cyber.com.cn/CompanyWebsite/upload/banner/product.png',
         swiperOption: {
-          slidesPerView: 4,
-          spaceBetween: 30,
+          slidesPerView: 'auto',
+          spaceBetween: 10,
+          slidesPerGroup: 3,
           pagination: {
             el: '.swiper-pagination',
             clickable: true
@@ -150,21 +148,19 @@
   }
 
   .swiper-slide {
-    height: 285px;
+    height: 225px;
     border: 1px solid #c5d8db;
     text-align: center;
     cursor: pointer;
   }
 
-  .swiper-slide img {
-    width: 100%;
-    height: 254px;
-  }
+
 
   .swiper-slide p {
     color: #292d30;
     overflow: hidden;
     font-size: 14px;
+    margin-top: 20px;
   }
 
   .swiper-button-next,
@@ -174,7 +170,8 @@
     height: 100%;
     margin-top: 0;
     background-size: 16px;
-    background-color: rgba(37, 41, 44, .2);
+    background-color: rgba(37, 41, 44, .8);
+    z-index: 999;
   }
 
   .swiper-button-prev {
