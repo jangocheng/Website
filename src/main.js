@@ -7,6 +7,8 @@ import VueLazyload from 'vue-lazyload'
 import "babel-polyfill"
 import store from './store'
 import 'swiper/dist/css/swiper.css'
+import "core-js/modules/es6.promise";
+import "core-js/modules/es6.array.iterator";
 import {Pagination, Carousel, CarouselItem, Message} from 'element-ui'
 
 

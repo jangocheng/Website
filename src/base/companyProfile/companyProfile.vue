@@ -172,8 +172,8 @@
   .row2-img-wrap:hover .bgColor {
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 223, 255, .9);
-    border: 1px solid rgba(0, 223, 255, .9);
+    background-color: rgba(0, 223, 255, .7);
+    border: 1px solid rgba(0, 223, 255, .7);
   }
 
   .row2-img-wrap:hover .top {

@@ -20,7 +20,7 @@ const PageNotFound = () => import ('@/components/page-not-found/page-not-found')
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
+  mode: 'hash',
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
       return savedPosition

@@ -30,4 +30,9 @@
   .scrollBanner_home {
     text-align: center;
   }
+  @media all and (max-width: 1920px) {
+    img {
+      width:100%;
+    }
+  }
 </style>
